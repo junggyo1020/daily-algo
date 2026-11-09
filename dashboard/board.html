@@ -1,0 +1,511 @@
+<title>코딩테스트 역량 보드</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --plane:#f9f9f7; --surface:#fcfcfb; --raised:#ffffff;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
+    --accent:#2a78d6; --track:#86b6ef; --cool:#2a78d6; --warm:#e34948; --mid:#f0efec;
+    --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+    --h1:#184f95; --h2:#2a78d6; --h3:#5598e7; --h4:#86b6ef;
+    --sans:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --plane:#0d0d0d; --surface:#1a1a19; --raised:#222221;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767; --mid:#383835;
+    --h1:#9ec5f4; --h2:#3987e5; --h3:#256abf; --h4:#184f95;
+  }}
+  :root[data-theme="dark"]{
+    --plane:#0d0d0d; --surface:#1a1a19; --raised:#222221;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767; --mid:#383835;
+    --h1:#9ec5f4; --h2:#3987e5; --h3:#256abf; --h4:#184f95;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--plane);color:var(--ink);font-family:var(--sans);
+       font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:28px 56px}
+  a{color:var(--accent)}
+  h1{font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em}
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+           color:var(--muted);margin:0 0 10px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* 머리말 */
+  .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
+       padding-bottom:14px;border-bottom:1px solid var(--grid)}
+  .top .sub{font-size:12px;color:var(--muted)}
+  .phase{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+         padding:3px 9px;border-radius:999px;border:1px solid var(--ring);color:var(--ink2)}
+  .phase b{color:var(--accent)}
+  .src{display:flex;gap:0;border:1px solid var(--ring);border-radius:8px;overflow:hidden}
+  .src button{font:inherit;font-size:12px;padding:5px 11px;border:0;background:transparent;
+              color:var(--ink2);cursor:pointer}
+  .src button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+  .demo-note{margin-top:14px;padding:9px 12px;border-radius:8px;font-size:12.5px;
+             background:color-mix(in srgb,var(--warn) 16%,var(--surface));
+             border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);color:var(--ink2)}
+
+  /* 오늘 할 일 — 페이지에서 유일하게 들어올린 요소 */
+  .today{margin-top:22px;background:var(--raised);border:1px solid var(--ring);border-radius:14px;
+         padding:20px 22px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px -16px rgba(0,0,0,.18)}
+  .today .mode{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;
+                text-transform:uppercase;padding:3px 8px;border-radius:5px;margin-bottom:10px}
+  .mode.review{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--ink)}
+  .mode.new{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--ink)}
+  .today h2{margin:0;font-size:26px;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+  .today .why{margin:8px 0 0;color:var(--ink2);font-size:13px;max-width:62ch}
+  .today .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;padding-top:14px;
+               border-top:1px solid var(--grid)}
+  .today .meta div{font-size:12px;color:var(--muted)}
+  .today .meta strong{display:block;font-size:15px;color:var(--ink);font-weight:600}
+  .chk{margin:14px 0 0;padding:0;list-style:none}
+  .chk li{position:relative;padding-left:16px;font-size:13px;color:var(--ink2);margin-bottom:3px}
+  .chk li::before{content:"";position:absolute;left:3px;top:.62em;width:4px;height:4px;
+                  border-radius:50%;background:var(--axis)}
+
+  /* 진행 스트립 */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;
+        border:1px solid var(--ring);border-radius:12px;overflow:hidden;background:var(--surface)}
+  .kpi{padding:14px 16px;border-right:1px solid var(--grid)}
+  .kpi:last-child{border-right:0}
+  .kpi .k{font-size:11px;color:var(--muted);letter-spacing:.04em}
+  .kpi .v{font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:-.02em;margin-top:2px}
+  .kpi .v small{font-size:13px;color:var(--muted);font-weight:400}
+  .meter{height:4px;border-radius:2px;background:var(--grid);margin-top:9px;overflow:hidden}
+  .meter i{display:block;height:100%;border-radius:2px;background:var(--accent)}
+
+  section{margin-top:38px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sec-head p{margin:0 0 10px;font-size:12.5px;color:var(--muted);max-width:60ch}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink2);margin-bottom:12px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  /* 역량 — 유형별 바 */
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th{font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--muted);text-align:left;
+          padding:0 8px 7px;border-bottom:1px solid var(--axis);white-space:nowrap}
+  .tbl td{padding:7px 8px;border-bottom:1px solid var(--grid);vertical-align:middle}
+  .tbl td.r,.tbl th.r{text-align:right}
+  .tbl tr:last-child td{border-bottom:0}
+  .bar{position:relative;height:9px;border-radius:4px;background:var(--grid);min-width:90px}
+  .bar .base{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--track)}
+  .bar .now{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--accent);
+            box-shadow:0 0 0 2px var(--plane)}
+  .bar.untested{background:transparent;border:1px dashed var(--axis)}
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;
+        white-space:nowrap;color:var(--ink2)}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none}
+  .ord{font-family:var(--mono);font-size:11px;color:var(--muted);width:1.6em;display:inline-block}
+
+  /* 녹슴 */
+  .rust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .rust div{border:1px solid var(--ring);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;
+            padding:11px 13px;background:var(--surface)}
+  .rust .n{font-weight:600;font-size:14px}
+  .rust .d{font-size:12px;color:var(--ink2);margin-top:3px}
+  .rust .d b{font-family:var(--mono);color:var(--ink)}
+
+  /* 다이버징 시간 */
+  .dv{display:grid;grid-template-columns:minmax(96px,auto) 1fr minmax(62px,auto);gap:4px 10px;
+      align-items:center;font-size:12.5px}
+  .dv .lab{color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dv .plot{position:relative;height:16px}
+  .dv .zero{position:absolute;top:-2px;bottom:-2px;width:1px;background:var(--axis)}
+  .dv .mk{position:absolute;top:3px;height:10px;border-radius:3px}
+  .dv .val{font-family:var(--mono);text-align:right;color:var(--ink2)}
+  .axis-note{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);
+             margin-top:6px;padding-top:6px;border-top:1px solid var(--grid)}
+
+  /* 히트맵 */
+  .hm{display:flex;gap:3px;overflow-x:auto;padding-bottom:4px}
+  .hm .col{display:grid;grid-template-rows:repeat(7,12px);gap:3px}
+  .hm i{width:12px;height:12px;border-radius:3px;background:var(--grid);display:block}
+  .hm-legend{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+
+  .locked{border:1px dashed var(--axis);border-radius:10px;padding:18px;text-align:center;
+          color:var(--muted);font-size:13px;background:var(--surface)}
+  .dday{font-family:var(--mono);font-size:12px;padding:1px 6px;border-radius:5px;
+        background:var(--grid);color:var(--ink2)}
+  .dday.over{background:color-mix(in srgb,var(--crit) 20%,transparent);color:var(--ink);font-weight:500}
+  .foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--grid);
+        font-size:11.5px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap}
+  .tip{position:fixed;z-index:9;pointer-events:none;opacity:0;transition:opacity .12s;
+       background:var(--ink);color:var(--plane);font-size:11.5px;padding:6px 9px;border-radius:6px;
+       max-width:260px;line-height:1.45}
+  .tip.on{opacity:1}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (max-width:680px){
+    .kpis{grid-template-columns:1fr 1fr}
+    .kpi:nth-child(2){border-right:0}
+    .kpi:nth-child(-n+2){border-bottom:1px solid var(--grid)}
+    .today h2{font-size:21px}
+    .hide-s{display:none}
+  }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>코딩테스트 역량 보드</h1>
+      <div class="sub">하루 한 문제 · Java · <span id="gen"></span></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span class="phase">단계 <b id="phase">—</b></span>
+      <div class="src" role="group" aria-label="데이터 선택">
+        <button id="b-real" aria-pressed="true">내 기록</button>
+        <button id="b-demo" aria-pressed="false">예시 보기</button>
+      </div>
+    </div>
+  </div>
+  <div id="note" class="demo-note" hidden></div>
+
+  <div class="today" id="today"></div>
+  <div class="kpis" id="kpis"></div>
+
+  <section>
+    <div class="sec-head"><div>
+      <p class="eyebrow">역량</p>
+      <p>진한 바가 현재 숙련도, 연한 트랙이 감쇠 전 실력(base)이다. <b>둘의 간격이 안 해서 떨어진 양</b>이다.
+         감쇠는 반감기 60일 — 30일 방치하면 71%가 된다.</p>
+    </div></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--accent)"></i>현재 숙련도</span>
+      <span><i class="sw" style="background:var(--track)"></i>감쇠 전 실력(base)</span>
+      <span><i class="sw" style="border:1px dashed var(--axis);background:transparent"></i>미진단(표본 0)</span>
+    </div>
+    <div style="overflow-x:auto"><table class="tbl" id="types"></table></div>
+  </section>
+
+  <section id="s-rust" hidden>
+    <p class="eyebrow">녹슴 경고</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">실력이 없는 게 아니라 안 해서 떨어진 유형이다. 복습 1문제로 회복된다.</p>
+    <div class="rust" id="rust"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">오답 원인</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">어디서 점수를 잃는지. 같은 원인이 3회 이상이면 개별 실수가 아니라 습관이므로 체크리스트로 막는다.</p>
+    <div id="errors"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">목표시간 대비</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">정답률이 100%여도 목표시간을 계속 넘기면 실전에서는 탈락이다.</p>
+    <div id="time"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">복습 큐</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1·3·7·21·60일 뒤 같은 문제를 다시 만난다. 2회 연속 시간내 정답이면 졸업한다.</p>
+    <div style="overflow-x:auto"><table class="tbl" id="queue"></table></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">풀이 기록</p>
+    <div class="hm" id="hm"></div>
+    <div class="hm-legend" id="hmleg"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">최근</p>
+    <div style="overflow-x:auto"><table class="tbl" id="recent"></table></div>
+  </section>
+
+  <div class="foot">
+    <span>mastery = base × 0.5^(경과일/60)</span>
+    <span>결과 점수 1.0 / 0.7 / 0.4 / 0.1</span>
+    <span>구간 견고 80+ · 양호 60+ · 불안 35+ · 취약 35−</span>
+    <span>주 목표 5일</span>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script id="real-data" type="application/json">__REAL__</script>
+<script id="demo-data" type="application/json">__DEMO__</script>
+<script>
+(function(){
+  const REAL = JSON.parse(document.getElementById('real-data').textContent);
+  const DEMO = JSON.parse(document.getElementById('demo-data').textContent);
+  const MIN_RECORDS = 5;
+  const OUT = {solved_in_time:'시간내 정답', solved_over_time:'시간초과 정답',
+               solved_with_hint:'힌트 후 정답', failed:'미해결'};
+  const OUT_RANK = {failed:0, solved_with_hint:1, solved_over_time:2, solved_in_time:3};
+  const HM = ['var(--h4)','var(--h3)','var(--h2)','var(--h1)'];
+  const STATUS = {견고:'var(--ok)', 양호:'var(--accent)', 불안:'var(--warn)',
+                  취약:'var(--crit)', 미진단:'var(--axis)'};
+  const $ = s => document.querySelector(s);
+  const el = (t,c,h) => { const n=document.createElement(t); if(c)n.className=c;
+                          if(h!=null)n.innerHTML=h; return n; };
+  const esc = s => String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const names = d => d.type_names || {};
+
+  /* ---- 오늘 할 일 ---- */
+  function today(d){
+    const r = d.recommendation, box = $('#today'), review = r.mode === 'review';
+    box.innerHTML = '';
+    box.append(el('span','mode '+(review?'review':'new'), review?'복습':'신규'));
+    if(review && r.target){
+      const t = r.target;
+      box.append(el('h2',null, esc(t.title)));
+      box.append(el('p','why', esc(r.reason)));
+      const m = el('div','meta');
+      m.append(el('div',null,`유형<strong>${(t.types||[]).map(i=>esc(names(d)[i]||i)).join(', ')}</strong>`));
+      m.append(el('div',null,`난이도<strong class="num">Lv.${esc(t.level)}</strong>`));
+      m.append(el('div',null,`지난 결과<strong>${esc(OUT[t.last_outcome]||t.last_outcome)}</strong>`));
+      m.append(el('div',null,`지난 오답원인<strong>${(t.errors||[]).map(esc).join(', ')||'없음'}</strong>`));
+      m.append(el('div',null,`시도<strong class="num">${esc(t.total_attempts)}회</strong>`));
+      box.append(m);
+      if(t.url) box.append(el('p',null,`<a href="${esc(t.url)}" target="_blank" rel="noopener">문제 열기 →</a>`));
+      box.append(el('p','why','코드를 다시 보지 않고 처음부터 작성한다. 읽어서 "아 맞다"가 되는 건 복습이 아니다.'));
+    } else {
+      const tid = r.type_id, row = (d.types||[]).find(x=>x.id===tid) || {};
+      box.append(el('h2',null, esc(r.type||'—')));
+      box.append(el('p','why', esc(r.reason)));
+      const m = el('div','meta');
+      m.append(el('div',null,`난이도<strong class="num">Lv.${esc(r.suggested_level)}</strong>`));
+      m.append(el('div',null,`목표시간<strong class="num">${esc(row.target_minutes||'—')}분</strong>`));
+      m.append(el('div',null,`현재 숙련도<strong class="num">${esc(row.mastery??0)}</strong>`));
+      m.append(el('div',null,`표본<strong class="num">${esc(row.samples??0)}</strong>`));
+      box.append(m);
+      const cs = (d.concepts||{})[tid] || [];
+      if(cs.length){
+        box.append(el('p','eyebrow','개념 체크리스트 — 설명 못 하는 항목부터'));
+        const ul = el('ul','chk');
+        cs.forEach(c=>ul.append(el('li',null,esc(c))));
+        box.append(ul);
+      }
+    }
+  }
+
+  /* ---- 진행 ---- */
+  function kpis(d){
+    const s = d.streak||{}, t = d.totals||{}, box = $('#kpis');
+    const wk = Math.min(100, (s.this_week||0)/(s.weekly_goal||5)*100);
+    box.innerHTML = '';
+    const tile = (k,v,sub,meter)=>{
+      const n = el('div','kpi');
+      n.append(el('div','k',k));
+      n.append(el('div','v', v + (sub?` <small>${sub}</small>`:'')));
+      if(meter!=null){ const m=el('div','meter'); m.append(el('i')); m.firstChild.style.width=meter+'%'; n.append(m); }
+      return n;
+    };
+    box.append(tile('이번 주', String(s.this_week||0), '/ '+(s.weekly_goal||5)+'일', wk));
+    box.append(tile('주단위 연속', String(s.week||0), '주'));
+    box.append(tile('유형 커버리지', String(t.types_touched||0), '/ '+(t.types_total||12),
+                    (t.types_touched||0)/(t.types_total||12)*100));
+    box.append(tile('평균 숙련도', String(t.avg_mastery||0), '/ 100', t.avg_mastery||0));
+  }
+
+  /* ---- 역량 ---- */
+  function types(d, locked){
+    const rows = (d.types||[]).slice();
+    const diag = d.phase === '진단';
+    const order = {}; (d.types||[]).forEach((r,i)=>order[r.id]=i+1);
+    if(!diag) rows.sort((a,b)=>a.mastery-b.mastery || (b.days_since||0)-(a.days_since||0));
+    const t = $('#types');
+    t.innerHTML = `<thead><tr><th>유형</th><th style="width:34%">숙련도</th><th class="r">점수</th>
+      <th class="r">base</th><th class="r hide-s">표본</th><th class="r hide-s">최근</th>
+      <th class="r hide-s">평균/목표</th><th>상태</th></tr></thead>`;
+    const tb = el('tbody');
+    rows.forEach(r=>{
+      const tr = el('tr');
+      const nm = diag ? `<span class="ord">${order[r.id]}</span>${esc(r.name)}` : esc(r.name);
+      tr.append(el('td',null,nm));
+      const bar = el('div','bar'+(r.samples?'':' untested'));
+      bar.dataset.tip = r.samples
+        ? `${r.name} — 현재 ${r.mastery} / base ${r.base} · ${r.days_since}일 전 · 표본 ${r.samples}`
+        : `${r.name} — 아직 측정 안 됨. 0점이 아니라 미진단이다.`;
+      if(r.samples){
+        const b = el('i','base'); b.style.width = Math.max(2,r.base)+'%';
+        const n = el('i','now'); n.style.width = Math.max(2,r.mastery)+'%';
+        bar.append(b,n);
+      }
+      const td = el('td'); td.append(bar); tr.append(td);
+      tr.append(el('td','r num', r.samples? String(r.mastery):'—'));
+      tr.append(el('td','r num', r.samples? String(r.base):'—'));
+      tr.append(el('td','r num hide-s', String(r.samples)));
+      tr.append(el('td','r num hide-s', r.days_since==null?'—':r.days_since+'일'));
+      tr.append(el('td','r num hide-s', r.avg_minutes? `${r.avg_minutes}/${r.target_minutes}`:'—'));
+      tr.append(el('td',null,`<span class="chip"><i class="dot" style="background:${STATUS[r.status]||'var(--axis)'}"></i>${esc(r.status)}</span>`));
+      tb.append(tr);
+    });
+    t.append(tb);
+  }
+
+  /* ---- 녹슴 ---- */
+  function rust(d){
+    const list = d.rust_alerts||[], sec = $('#s-rust');
+    sec.hidden = list.length === 0;
+    const box = $('#rust'); box.innerHTML = '';
+    list.forEach(r=>{
+      const n = el('div');
+      n.append(el('div','n', esc(r.name)));
+      n.append(el('div','d', `<b>${r.days_since}일</b> 방치 · base <b>${r.base}</b> → 현재 <b>${r.mastery}</b> (−${r.base-r.mastery})`));
+      box.append(n);
+    });
+  }
+
+  /* ---- 오답 원인 ---- */
+  function errors(d, locked){
+    const box = $('#errors'); box.innerHTML='';
+    const list = (d.errors||[]).filter(e=>e.count>0).sort((a,b)=>b.count-a.count);
+    if(!list.length){ box.append(el('div','locked','아직 분류된 오답 원인이 없다.')); return; }
+    const max = Math.max(...list.map(e=>e.count));
+    const t = el('table','tbl');
+    t.innerHTML = `<thead><tr><th>원인</th><th style="width:40%">횟수</th><th class="r">회</th><th class="hide-s">정의</th></tr></thead>`;
+    const tb = el('tbody');
+    list.forEach(e=>{
+      const tr = el('tr');
+      tr.append(el('td',null,esc(e.cause)+(e.count>=3?' <span class="chip" style="color:var(--crit)">습관</span>':'')));
+      const bar = el('div','bar'); bar.dataset.tip = `${e.cause} — ${e.count}회`;
+      const n = el('i','now'); n.style.width = (e.count/max*100)+'%'; bar.append(n);
+      const td = el('td'); td.append(bar); tr.append(td);
+      tr.append(el('td','r num', String(e.count)));
+      tr.append(el('td','hide-s', `<span style="color:var(--muted);font-size:12px">${esc(e.desc)}</span>`));
+      tb.append(tr);
+    });
+    t.append(tb); box.append(t);
+  }
+
+  /* ---- 목표시간 대비 (다이버징) ---- */
+  function timeChart(d, locked){
+    const box = $('#time'); box.innerHTML='';
+    const rows = (d.time_trend||[]).filter(r=>r.target>0).slice(-12).reverse();
+    if(locked || !rows.length){ box.append(el('div','locked',
+      `기록 ${MIN_RECORDS}건부터 표시된다 (현재 ${(d.totals||{}).records||0}건).`)); return; }
+    const max = Math.max(12, ...rows.map(r=>Math.abs(r.minutes-r.target)));
+    const g = el('div','dv');
+    rows.forEach(r=>{
+      const diff = r.minutes - r.target;
+      g.append(el('div','lab', `<span class="num" style="color:var(--muted)">${esc(r.date.slice(5))}</span> ${esc(r.title)}`));
+      const plot = el('div','plot');
+      const zero = el('div','zero'); zero.style.left='50%'; plot.append(zero);
+      const mk = el('div','mk');
+      const w = Math.abs(diff)/max*50;
+      if(diff<=0){ mk.style.right='50%'; mk.style.width=Math.max(w,1.2)+'%'; mk.style.background='var(--cool)'; }
+      else { mk.style.left='50%'; mk.style.width=Math.max(w,1.2)+'%'; mk.style.background='var(--warm)'; }
+      mk.dataset.tip = `${r.title} — ${r.minutes}분 / 목표 ${r.target}분 · ${OUT[r.outcome]||r.outcome}`;
+      plot.append(mk); g.append(plot);
+      g.append(el('div','val', (diff>0?'+':'')+diff+'분'));
+    });
+    box.append(g);
+    box.append(el('div','axis-note','<span>← 목표보다 빠름</span><span>목표 초과 →</span>'));
+  }
+
+  /* ---- 복습 큐 ---- */
+  function queue(d){
+    const t = $('#queue');
+    const q = d.review_queue||[];
+    t.innerHTML = `<thead><tr><th>D-day</th><th>문제</th><th class="hide-s">유형</th><th class="r">Lv</th>
+      <th>지난 결과</th><th class="hide-s">지난 원인</th><th class="r hide-s">간격</th></tr></thead>`;
+    const tb = el('tbody');
+    if(!q.length){ tb.innerHTML = `<tr><td colspan="7" style="color:var(--muted)">복습 예정이 없다. 신규 문제를 푼다.</td></tr>`; }
+    q.forEach(x=>{
+      const tr = el('tr'), over = x.days_until<=0;
+      tr.append(el('td',null,`<span class="dday${over?' over':''}">D${x.days_until>=0?'+':''}${x.days_until}</span>`));
+      tr.append(el('td',null, x.url? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`:esc(x.title)));
+      tr.append(el('td','hide-s',(x.types||[]).map(i=>esc(names(d)[i]||i)).join(', ')));
+      tr.append(el('td','r num', String(x.level)));
+      tr.append(el('td',null, esc(OUT[x.last_outcome]||x.last_outcome)));
+      tr.append(el('td','hide-s', (x.errors||[]).map(esc).join(', ')||'—'));
+      tr.append(el('td','r num hide-s', x.interval+'일'));
+      tb.append(tr);
+    });
+    t.append(tb);
+  }
+
+  /* ---- 히트맵 ---- */
+  function heatmap(d){
+    const box = $('#hm'); box.innerHTML='';
+    const byDate = {}; (d.heatmap||[]).forEach(h=>byDate[h.date]=h);
+    const end = new Date(((d.generated_at||'').slice(0,10))||Date.now());
+    if(isNaN(end)) return;
+    const dow = (end.getDay()+6)%7;              // 월=0
+    end.setDate(end.getDate() + (6-dow));        // 이번 주 일요일까지
+    const WEEKS = 16;
+    const start = new Date(end); start.setDate(start.getDate()-(WEEKS*7-1));
+    for(let w=0; w<WEEKS; w++){
+      const col = el('div','col');
+      for(let k=0; k<7; k++){
+        const day = new Date(start); day.setDate(start.getDate()+w*7+k);
+        const key = day.toISOString().slice(0,10);
+        const h = byDate[key], cell = el('i');
+        if(h){ cell.style.background = HM[OUT_RANK[h.outcome]??2];
+               cell.dataset.tip = `${key} · ${OUT[h.outcome]||h.outcome}${h.count>1?` (${h.count}건)`:''}`; }
+        else { cell.dataset.tip = key + ' · 기록 없음'; }
+        col.append(cell);
+      }
+      box.append(col);
+    }
+    const lg = $('#hmleg'); lg.innerHTML = '';
+    lg.append(el('span',null,'미해결'));
+    HM.forEach(c=>{ const i=el('i','sw'); i.style.background=c; i.style.width='12px'; i.style.height='12px'; lg.append(i); });
+    lg.append(el('span',null,'시간내 정답'));
+    lg.append(el('span',null,`<span style="margin-left:10px">최근 ${WEEKS}주 · 세로 월~일</span>`));
+  }
+
+  /* ---- 최근 ---- */
+  function recent(d){
+    const t = $('#recent'), rows = d.recent||[];
+    t.innerHTML = `<thead><tr><th>날짜</th><th>문제</th><th class="hide-s">유형</th><th class="r">Lv</th>
+      <th class="r">분/목표</th><th>결과</th><th class="hide-s">원인</th><th class="hide-s">모드</th></tr></thead>`;
+    const tb = el('tbody');
+    if(!rows.length){ tb.innerHTML = `<tr><td colspan="8" style="color:var(--muted)">기록이 없다. 오늘 첫 문제를 풀면 여기 쌓인다.</td></tr>`; }
+    rows.forEach(r=>{
+      const tr = el('tr'), over = r.target>0 && r.minutes>r.target;
+      tr.append(el('td','num', esc(r.date.slice(5))));
+      tr.append(el('td',null, r.url? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a>`:esc(r.title)));
+      tr.append(el('td','hide-s',(r.types||[]).map(i=>esc(names(d)[i]||i)).join(', ')));
+      tr.append(el('td','r num', String(r.level)));
+      tr.append(el('td','r num', `<span style="color:${over?'var(--warm)':'var(--ink2)'}">${r.minutes}</span>/${r.target||'—'}`));
+      tr.append(el('td',null, esc(OUT[r.outcome]||r.outcome)));
+      tr.append(el('td','hide-s',(r.errors||[]).map(esc).join(', ')||'—'));
+      tr.append(el('td','hide-s', r.mode==='review'?'복습':'신규'));
+      tb.append(tr);
+    });
+    t.append(tb);
+  }
+
+  /* ---- 툴팁 ---- */
+  const tip = $('#tip');
+  document.addEventListener('mouseover', e=>{
+    const n = e.target.closest('[data-tip]');
+    if(!n){ tip.classList.remove('on'); return; }
+    tip.textContent = n.dataset.tip; tip.classList.add('on');
+    const r = n.getBoundingClientRect();
+    tip.style.left = Math.min(window.innerWidth-tip.offsetWidth-10, Math.max(8, r.left))+'px';
+    tip.style.top  = Math.max(8, r.top - tip.offsetHeight - 7)+'px';
+  });
+  document.addEventListener('mouseout', e=>{ if(e.target.closest('[data-tip]')) tip.classList.remove('on'); });
+
+  /* ---- 렌더 ---- */
+  function render(which){
+    const d = which==='demo' ? DEMO : REAL;
+    const locked = (d.totals||{}).records < MIN_RECORDS;
+    $('#phase').textContent = d.phase || '—';
+    $('#gen').textContent = '갱신 ' + String(d.generated_at||'').replace('T',' ').slice(0,16);
+    const note = $('#note');
+    if(which==='demo'){
+      note.hidden = false;
+      note.innerHTML = '<b>예시 데이터</b> — 내 기록이 아니다. 19일치 가상 기록을 같은 계산식에 넣어 돌린 화면이다. 실제 기록으로 돌아가려면 위에서 “내 기록”을 누른다.';
+    } else if(locked){
+      note.hidden = false;
+      note.innerHTML = `<b>진단 단계</b> — 기록 ${(d.totals||{}).records||0}건. 12유형을 한 번씩 풀어 현재 상태를 측정하는 중이고, 차트는 ${MIN_RECORDS}건부터 의미가 생긴다. 아래 “역량” 표의 번호가 진단 순서다.`;
+    } else note.hidden = true;
+    today(d); kpis(d); types(d, locked); rust(d);
+    errors(d, locked); timeChart(d, locked); queue(d); heatmap(d); recent(d);
+    $('#b-real').setAttribute('aria-pressed', String(which!=='demo'));
+    $('#b-demo').setAttribute('aria-pressed', String(which==='demo'));
+  }
+  $('#b-real').onclick = ()=>render('real');
+  $('#b-demo').onclick = ()=>render('demo');
+  render('real');
+})();
+</script>

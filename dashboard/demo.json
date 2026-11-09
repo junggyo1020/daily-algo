@@ -1,0 +1,1118 @@
+{
+  "generated_at": "2026-11-09T21:53:44",
+  "phase": "보강",
+  "weekly_goal": 5,
+  "totals": {
+    "records": 19,
+    "problems": 13,
+    "days": 19,
+    "solved_in_time": 11,
+    "types_touched": 12,
+    "types_total": 12,
+    "avg_mastery": 72
+  },
+  "streak": {
+    "day": 2,
+    "week": 3,
+    "this_week": 0,
+    "weekly_goal": 5
+  },
+  "types": [
+    {
+      "id": "t01",
+      "name": "구현·시뮬레이션",
+      "mastery": 74,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-10-14",
+      "days_since": 26,
+      "status": "양호",
+      "avg_minutes": 14.0,
+      "target_minutes": 25,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t02",
+      "name": "문자열",
+      "mastery": 68,
+      "base": 87,
+      "samples": 2,
+      "last_seen": "2026-10-19",
+      "days_since": 21,
+      "status": "양호",
+      "avg_minutes": 25.0,
+      "target_minutes": 25,
+      "outcomes": {
+        "solved_over_time": 1,
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t03",
+      "name": "정렬·해시",
+      "mastery": 77,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-10-17",
+      "days_since": 23,
+      "status": "양호",
+      "avg_minutes": 18.0,
+      "target_minutes": 22,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t04",
+      "name": "스택·큐·덱",
+      "mastery": 72,
+      "base": 87,
+      "samples": 2,
+      "last_seen": "2026-10-24",
+      "days_since": 16,
+      "status": "양호",
+      "avg_minutes": 23.5,
+      "target_minutes": 22,
+      "outcomes": {
+        "solved_over_time": 1,
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t05",
+      "name": "힙·우선순위큐",
+      "mastery": 80,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-10-21",
+      "days_since": 19,
+      "status": "견고",
+      "avg_minutes": 21.0,
+      "target_minutes": 25,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t06",
+      "name": "누적합·투포인터",
+      "mastery": 64,
+      "base": 73,
+      "samples": 2,
+      "last_seen": "2026-10-28",
+      "days_since": 12,
+      "status": "양호",
+      "avg_minutes": 36.5,
+      "target_minutes": 25,
+      "outcomes": {
+        "solved_with_hint": 1,
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t07",
+      "name": "이진탐색",
+      "mastery": 84,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-10-25",
+      "days_since": 15,
+      "status": "견고",
+      "avg_minutes": 38.0,
+      "target_minutes": 28,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t08",
+      "name": "완전탐색·백트래킹",
+      "mastery": 85,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-10-26",
+      "days_since": 14,
+      "status": "견고",
+      "avg_minutes": 26.0,
+      "target_minutes": 30,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    },
+    {
+      "id": "t09",
+      "name": "BFS·DFS",
+      "mastery": 89,
+      "base": 90,
+      "samples": 3,
+      "last_seen": "2026-11-08",
+      "days_since": 1,
+      "status": "견고",
+      "avg_minutes": 28.3,
+      "target_minutes": 30,
+      "outcomes": {
+        "solved_in_time": 2,
+        "solved_over_time": 1
+      }
+    },
+    {
+      "id": "t10",
+      "name": "최단경로·유니온파인드",
+      "mastery": 26,
+      "base": 27,
+      "samples": 2,
+      "last_seen": "2026-11-07",
+      "days_since": 2,
+      "status": "취약",
+      "avg_minutes": 47.5,
+      "target_minutes": 35,
+      "outcomes": {
+        "failed": 1,
+        "solved_with_hint": 1
+      }
+    },
+    {
+      "id": "t11",
+      "name": "DP",
+      "mastery": 53,
+      "base": 57,
+      "samples": 2,
+      "last_seen": "2026-11-03",
+      "days_since": 6,
+      "status": "불안",
+      "avg_minutes": 43.0,
+      "target_minutes": 35,
+      "outcomes": {
+        "solved_with_hint": 1,
+        "solved_over_time": 1
+      }
+    },
+    {
+      "id": "t12",
+      "name": "그리디",
+      "mastery": 95,
+      "base": 100,
+      "samples": 1,
+      "last_seen": "2026-11-05",
+      "days_since": 4,
+      "status": "견고",
+      "avg_minutes": 22.0,
+      "target_minutes": 28,
+      "outcomes": {
+        "solved_in_time": 1
+      }
+    }
+  ],
+  "concepts": {
+    "t01": [
+      "좌표 이동과 방향 배열(dx/dy)",
+      "격자 회전·전치",
+      "상태를 정확히 들고 가는 루프 설계",
+      "요구사항을 코드 순서로 1:1 번역하기"
+    ],
+    "t02": [
+      "StringBuilder와 불변 String의 비용 차이",
+      "charAt/substring/split의 복잡도",
+      "아스키 연산('a' 오프셋)",
+      "정규식 최소 사용",
+      "회문·치환·압축 패턴"
+    ],
+    "t03": [
+      "Comparator 다중 조건 정렬",
+      "Arrays.sort vs Collections.sort (원시타입 퀵소트 최악 O(n^2))",
+      "HashMap 빈도수 세기 getOrDefault/merge",
+      "TreeMap의 floorKey/ceilingKey",
+      "정렬 후 그리디/투포인터로 넘어가는 신호"
+    ],
+    "t04": [
+      "괄호·짝맞춤 패턴",
+      "ArrayDeque를 Stack/Queue 둘 다로 쓰기",
+      "모노토닉 스택(다음 큰 원소)",
+      "회전·슬라이딩에서 덱 쓰기"
+    ],
+    "t05": [
+      "PriorityQueue 기본 최소힙, Comparator로 최대힙",
+      "삽입·삭제 O(log n)이 주는 이득",
+      "두 힙으로 중앙값 유지",
+      "지연 삭제(lazy deletion) 기법"
+    ],
+    "t06": [
+      "prefix[i+1]=prefix[i]+a[i] 와 구간합 O(1)",
+      "2차원 누적합",
+      "슬라이딩 윈도우 확장·축소 조건",
+      "정렬된 배열에서 양끝 포인터",
+      "구간/부분합 질의가 반복되면 떠올릴 신호"
+    ],
+    "t07": [
+      "lower_bound/upper_bound 경계 설계",
+      "파라메트릭 서치: 답을 이분하고 가능성 판정",
+      "단조성(monotonicity) 확인이 전제",
+      "mid 계산 시 오버플로 회피 lo+(hi-lo)/2"
+    ],
+    "t08": [
+      "순열·조합·부분집합 재귀 골격",
+      "visited 체크와 되돌리기(undo)",
+      "가지치기 조건이 성능의 핵심",
+      "입력 크기로 완전탐색 가능 여부 역산하기"
+    ],
+    "t09": [
+      "인접행렬 vs 인접리스트 선택",
+      "BFS=최단거리(간선 가중치 1), DFS=경로·연결성",
+      "방문처리 시점(큐에 넣을 때)",
+      "다중 시작점 BFS",
+      "0-1 BFS와 덱"
+    ],
+    "t10": [
+      "다익스트라: 우선순위큐 + dist 배열, 음수간선 불가",
+      "플로이드워셜: O(V^3), 모든 쌍",
+      "유니온파인드: 경로압축+랭크",
+      "크루스칼 MST = 정렬 + 유니온파인드"
+    ],
+    "t11": [
+      "상태 정의 → 점화식 → 초기값 → 순회 순서",
+      "탑다운(메모이제이션) vs 바텀업",
+      "대표 골격: LIS, 배낭, 편집거리, 격자경로",
+      "부분문제 중복과 최적 부분구조 확인"
+    ],
+    "t12": [
+      "교환논증으로 정당성 확인",
+      "정렬 기준이 곧 전략",
+      "회의실 배정·거스름돈 대표 패턴",
+      "DP로 가야 하는 경우와 구분하는 기준"
+    ]
+  },
+  "rust_alerts": [
+    {
+      "name": "구현·시뮬레이션",
+      "days_since": 26,
+      "mastery": 74,
+      "base": 100
+    },
+    {
+      "name": "정렬·해시",
+      "days_since": 23,
+      "mastery": 77,
+      "base": 100
+    },
+    {
+      "name": "문자열",
+      "days_since": 21,
+      "mastery": 68,
+      "base": 87
+    }
+  ],
+  "heatmap": [
+    {
+      "date": "2026-10-14",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-15",
+      "count": 1,
+      "outcome": "solved_over_time"
+    },
+    {
+      "date": "2026-10-17",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-18",
+      "count": 1,
+      "outcome": "solved_over_time"
+    },
+    {
+      "date": "2026-10-19",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-21",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-22",
+      "count": 1,
+      "outcome": "solved_with_hint"
+    },
+    {
+      "date": "2026-10-24",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-25",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-26",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-28",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-29",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-10-31",
+      "count": 1,
+      "outcome": "solved_with_hint"
+    },
+    {
+      "date": "2026-11-01",
+      "count": 1,
+      "outcome": "solved_over_time"
+    },
+    {
+      "date": "2026-11-03",
+      "count": 1,
+      "outcome": "solved_over_time"
+    },
+    {
+      "date": "2026-11-04",
+      "count": 1,
+      "outcome": "failed"
+    },
+    {
+      "date": "2026-11-05",
+      "count": 1,
+      "outcome": "solved_in_time"
+    },
+    {
+      "date": "2026-11-07",
+      "count": 1,
+      "outcome": "solved_with_hint"
+    },
+    {
+      "date": "2026-11-08",
+      "count": 1,
+      "outcome": "solved_in_time"
+    }
+  ],
+  "errors": [
+    {
+      "cause": "유형미인지",
+      "desc": "어떤 알고리즘을 써야 할지 떠올리지 못함",
+      "count": 2
+    },
+    {
+      "cause": "복잡도오판",
+      "desc": "시간/공간 복잡도를 잘못 계산해 시간초과",
+      "count": 1
+    },
+    {
+      "cause": "경계조건",
+      "desc": "빈 입력, 원소 1개, 최대값, 동일값 등 엣지케이스",
+      "count": 2
+    },
+    {
+      "cause": "자료구조선택",
+      "desc": "맞는 답이지만 비효율적/부적절한 자료구조",
+      "count": 2
+    },
+    {
+      "cause": "구현실수",
+      "desc": "인덱스, off-by-one, 조건문 뒤집힘 등 코딩 실수",
+      "count": 2
+    },
+    {
+      "cause": "문제오독",
+      "desc": "요구사항을 잘못 읽음",
+      "count": 0
+    },
+    {
+      "cause": "API미숙",
+      "desc": "Java 표준 API 사용법이 막힘 (Deque, TreeMap, Comparator 등)",
+      "count": 1
+    },
+    {
+      "cause": "수학오버플로",
+      "desc": "int 오버플로, 모듈러, 조합/확률 공식",
+      "count": 1
+    }
+  ],
+  "review_queue": [
+    {
+      "key": "programmers:120585",
+      "title": "교실의 정원",
+      "level": 1,
+      "types": [
+        "t01"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/120585",
+      "last_date": "2026-10-14",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-04",
+      "days_until": -5,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:42578",
+      "title": "의상",
+      "level": 2,
+      "types": [
+        "t03"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42578",
+      "last_date": "2026-10-17",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-07",
+      "days_until": -2,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:60057",
+      "title": "문자열 압축",
+      "level": 2,
+      "types": [
+        "t02"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
+      "last_date": "2026-10-19",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-09",
+      "days_until": 0,
+      "total_attempts": 2
+    },
+    {
+      "key": "programmers:43105",
+      "title": "정수 삼각형",
+      "level": 3,
+      "types": [
+        "t11"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105",
+      "last_date": "2026-11-03",
+      "last_outcome": "solved_over_time",
+      "errors": [
+        "구현실수"
+      ],
+      "interval": 7,
+      "next_review": "2026-11-10",
+      "days_until": 1,
+      "total_attempts": 2
+    },
+    {
+      "key": "programmers:12978",
+      "title": "배달",
+      "level": 3,
+      "types": [
+        "t10"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978",
+      "last_date": "2026-11-07",
+      "last_outcome": "solved_with_hint",
+      "errors": [
+        "자료구조선택"
+      ],
+      "interval": 3,
+      "next_review": "2026-11-10",
+      "days_until": 1,
+      "total_attempts": 2
+    },
+    {
+      "key": "programmers:42626",
+      "title": "더 맵게",
+      "level": 2,
+      "types": [
+        "t05"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42626",
+      "last_date": "2026-10-21",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-11",
+      "days_until": 2,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:42586",
+      "title": "기능개발",
+      "level": 2,
+      "types": [
+        "t04"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42586",
+      "last_date": "2026-10-24",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-14",
+      "days_until": 5,
+      "total_attempts": 2
+    },
+    {
+      "key": "programmers:43238",
+      "title": "입국심사",
+      "level": 3,
+      "types": [
+        "t07"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43238",
+      "last_date": "2026-10-25",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-15",
+      "days_until": 6,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:87946",
+      "title": "피로도",
+      "level": 2,
+      "types": [
+        "t08"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/87946",
+      "last_date": "2026-10-26",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-16",
+      "days_until": 7,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:67258",
+      "title": "보석 쇼핑",
+      "level": 3,
+      "types": [
+        "t06"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258",
+      "last_date": "2026-10-28",
+      "last_outcome": "solved_in_time",
+      "errors": [
+        "API미숙"
+      ],
+      "interval": 21,
+      "next_review": "2026-11-18",
+      "days_until": 9,
+      "total_attempts": 2
+    },
+    {
+      "key": "programmers:43165",
+      "title": "타겟 넘버",
+      "level": 2,
+      "types": [
+        "t09"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43165",
+      "last_date": "2026-10-29",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-19",
+      "days_until": 10,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:42883",
+      "title": "큰 수 만들기",
+      "level": 2,
+      "types": [
+        "t12"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42883",
+      "last_date": "2026-11-05",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-26",
+      "days_until": 17,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:1844",
+      "title": "게임 맵 최단거리",
+      "level": 2,
+      "types": [
+        "t09"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844",
+      "last_date": "2026-11-08",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-29",
+      "days_until": 20,
+      "total_attempts": 2
+    }
+  ],
+  "time_trend": [
+    {
+      "date": "2026-10-14",
+      "minutes": 14,
+      "target": 15,
+      "outcome": "solved_in_time",
+      "title": "교실의 정원",
+      "types": [
+        "t01"
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "minutes": 31,
+      "target": 25,
+      "outcome": "solved_over_time",
+      "title": "문자열 압축",
+      "types": [
+        "t02"
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "minutes": 18,
+      "target": 22,
+      "outcome": "solved_in_time",
+      "title": "의상",
+      "types": [
+        "t03"
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "minutes": 27,
+      "target": 22,
+      "outcome": "solved_over_time",
+      "title": "기능개발",
+      "types": [
+        "t04"
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "minutes": 19,
+      "target": 25,
+      "outcome": "solved_in_time",
+      "title": "문자열 압축",
+      "types": [
+        "t02"
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "minutes": 21,
+      "target": 25,
+      "outcome": "solved_in_time",
+      "title": "더 맵게",
+      "types": [
+        "t05"
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "minutes": 40,
+      "target": 35,
+      "outcome": "solved_with_hint",
+      "title": "보석 쇼핑",
+      "types": [
+        "t06"
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "minutes": 20,
+      "target": 22,
+      "outcome": "solved_in_time",
+      "title": "기능개발",
+      "types": [
+        "t04"
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "minutes": 38,
+      "target": 38,
+      "outcome": "solved_in_time",
+      "title": "입국심사",
+      "types": [
+        "t07"
+      ]
+    },
+    {
+      "date": "2026-10-26",
+      "minutes": 26,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "title": "피로도",
+      "types": [
+        "t08"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "minutes": 33,
+      "target": 35,
+      "outcome": "solved_in_time",
+      "title": "보석 쇼핑",
+      "types": [
+        "t06"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "minutes": 24,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "title": "타겟 넘버",
+      "types": [
+        "t09"
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "minutes": 45,
+      "target": 45,
+      "outcome": "solved_with_hint",
+      "title": "정수 삼각형",
+      "types": [
+        "t11"
+      ]
+    },
+    {
+      "date": "2026-11-01",
+      "minutes": 35,
+      "target": 30,
+      "outcome": "solved_over_time",
+      "title": "게임 맵 최단거리",
+      "types": [
+        "t09"
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "minutes": 41,
+      "target": 45,
+      "outcome": "solved_over_time",
+      "title": "정수 삼각형",
+      "types": [
+        "t11"
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "minutes": 52,
+      "target": 45,
+      "outcome": "failed",
+      "title": "배달",
+      "types": [
+        "t10"
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "minutes": 22,
+      "target": 28,
+      "outcome": "solved_in_time",
+      "title": "큰 수 만들기",
+      "types": [
+        "t12"
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "minutes": 43,
+      "target": 45,
+      "outcome": "solved_with_hint",
+      "title": "배달",
+      "types": [
+        "t10"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "minutes": 26,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "title": "게임 맵 최단거리",
+      "types": [
+        "t09"
+      ]
+    }
+  ],
+  "recent": [
+    {
+      "date": "2026-11-08",
+      "title": "게임 맵 최단거리",
+      "level": 2,
+      "types": [
+        "t09"
+      ],
+      "minutes": 26,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844"
+    },
+    {
+      "date": "2026-11-07",
+      "title": "배달",
+      "level": 3,
+      "types": [
+        "t10"
+      ],
+      "minutes": 43,
+      "target": 45,
+      "outcome": "solved_with_hint",
+      "errors": [
+        "자료구조선택"
+      ],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978"
+    },
+    {
+      "date": "2026-11-05",
+      "title": "큰 수 만들기",
+      "level": 2,
+      "types": [
+        "t12"
+      ],
+      "minutes": 22,
+      "target": 28,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42883"
+    },
+    {
+      "date": "2026-11-04",
+      "title": "배달",
+      "level": 3,
+      "types": [
+        "t10"
+      ],
+      "minutes": 52,
+      "target": 45,
+      "outcome": "failed",
+      "errors": [
+        "복잡도오판",
+        "자료구조선택"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "정수 삼각형",
+      "level": 3,
+      "types": [
+        "t11"
+      ],
+      "minutes": 41,
+      "target": 45,
+      "outcome": "solved_over_time",
+      "errors": [
+        "구현실수"
+      ],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "게임 맵 최단거리",
+      "level": 2,
+      "types": [
+        "t09"
+      ],
+      "minutes": 35,
+      "target": 30,
+      "outcome": "solved_over_time",
+      "errors": [
+        "경계조건"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844"
+    },
+    {
+      "date": "2026-10-31",
+      "title": "정수 삼각형",
+      "level": 3,
+      "types": [
+        "t11"
+      ],
+      "minutes": 45,
+      "target": 45,
+      "outcome": "solved_with_hint",
+      "errors": [
+        "유형미인지",
+        "수학오버플로"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "타겟 넘버",
+      "level": 2,
+      "types": [
+        "t09"
+      ],
+      "minutes": 24,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43165"
+    },
+    {
+      "date": "2026-10-28",
+      "title": "보석 쇼핑",
+      "level": 3,
+      "types": [
+        "t06"
+      ],
+      "minutes": 33,
+      "target": 35,
+      "outcome": "solved_in_time",
+      "errors": [
+        "API미숙"
+      ],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258"
+    },
+    {
+      "date": "2026-10-26",
+      "title": "피로도",
+      "level": 2,
+      "types": [
+        "t08"
+      ],
+      "minutes": 26,
+      "target": 30,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/87946"
+    },
+    {
+      "date": "2026-10-25",
+      "title": "입국심사",
+      "level": 3,
+      "types": [
+        "t07"
+      ],
+      "minutes": 38,
+      "target": 38,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43238"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "기능개발",
+      "level": 2,
+      "types": [
+        "t04"
+      ],
+      "minutes": 20,
+      "target": 22,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42586"
+    },
+    {
+      "date": "2026-10-22",
+      "title": "보석 쇼핑",
+      "level": 3,
+      "types": [
+        "t06"
+      ],
+      "minutes": 40,
+      "target": 35,
+      "outcome": "solved_with_hint",
+      "errors": [
+        "유형미인지"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258"
+    },
+    {
+      "date": "2026-10-21",
+      "title": "더 맵게",
+      "level": 2,
+      "types": [
+        "t05"
+      ],
+      "minutes": 21,
+      "target": 25,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42626"
+    },
+    {
+      "date": "2026-10-19",
+      "title": "문자열 압축",
+      "level": 2,
+      "types": [
+        "t02"
+      ],
+      "minutes": 19,
+      "target": 25,
+      "outcome": "solved_in_time",
+      "errors": [],
+      "mode": "review",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057"
+    }
+  ],
+  "recommendation": {
+    "mode": "review",
+    "reason": "복습이 5일 밀렸다. 밀린 복습이 2일 이상이면 신규보다 먼저 처리한다.",
+    "suggested_level": 1,
+    "type": null,
+    "type_id": null,
+    "target": {
+      "key": "programmers:120585",
+      "title": "교실의 정원",
+      "level": 1,
+      "types": [
+        "t01"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/120585",
+      "last_date": "2026-10-14",
+      "last_outcome": "solved_in_time",
+      "errors": [],
+      "interval": 21,
+      "next_review": "2026-11-04",
+      "days_until": -5,
+      "total_attempts": 1
+    }
+  },
+  "type_names": {
+    "t01": "구현·시뮬레이션",
+    "t02": "문자열",
+    "t03": "정렬·해시",
+    "t04": "스택·큐·덱",
+    "t05": "힙·우선순위큐",
+    "t06": "누적합·투포인터",
+    "t07": "이진탐색",
+    "t08": "완전탐색·백트래킹",
+    "t09": "BFS·DFS",
+    "t10": "최단경로·유니온파인드",
+    "t11": "DP",
+    "t12": "그리디"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "generated_at": "2026-11-09T21:58:51",
+  "phase": "진단",
+  "weekly_goal": 5,
+  "totals": {
+    "records": 0,
+    "problems": 0,
+    "days": 0,
+    "solved_in_time": 0,
+    "types_touched": 0,
+    "types_total": 12,
+    "avg_mastery": 0
+  },
+  "streak": {
+    "day": 0,
+    "week": 0,
+    "this_week": 0,
+    "weekly_goal": 5
+  },
+  "types": [
+    {
+      "id": "t01",
+      "name": "구현·시뮬레이션",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 25,
+      "outcomes": {}
+    },
+    {
+      "id": "t02",
+      "name": "문자열",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 25,
+      "outcomes": {}
+    },
+    {
+      "id": "t03",
+      "name": "정렬·해시",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 22,
+      "outcomes": {}
+    },
+    {
+      "id": "t04",
+      "name": "스택·큐·덱",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 22,
+      "outcomes": {}
+    },
+    {
+      "id": "t05",
+      "name": "힙·우선순위큐",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 25,
+      "outcomes": {}
+    },
+    {
+      "id": "t06",
+      "name": "누적합·투포인터",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 25,
+      "outcomes": {}
+    },
+    {
+      "id": "t07",
+      "name": "이진탐색",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 28,
+      "outcomes": {}
+    },
+    {
+      "id": "t08",
+      "name": "완전탐색·백트래킹",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 30,
+      "outcomes": {}
+    },
+    {
+      "id": "t09",
+      "name": "BFS·DFS",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 30,
+      "outcomes": {}
+    },
+    {
+      "id": "t10",
+      "name": "최단경로·유니온파인드",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 35,
+      "outcomes": {}
+    },
+    {
+      "id": "t11",
+      "name": "DP",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 35,
+      "outcomes": {}
+    },
+    {
+      "id": "t12",
+      "name": "그리디",
+      "mastery": 0,
+      "base": 0,
+      "samples": 0,
+      "last_seen": null,
+      "days_since": null,
+      "status": "미진단",
+      "avg_minutes": null,
+      "target_minutes": 28,
+      "outcomes": {}
+    }
+  ],
+  "concepts": {
+    "t01": [
+      "좌표 이동과 방향 배열(dx/dy)",
+      "격자 회전·전치",
+      "상태를 정확히 들고 가는 루프 설계",
+      "요구사항을 코드 순서로 1:1 번역하기"
+    ],
+    "t02": [
+      "StringBuilder와 불변 String의 비용 차이",
+      "charAt/substring/split의 복잡도",
+      "아스키 연산('a' 오프셋)",
+      "정규식 최소 사용",
+      "회문·치환·압축 패턴"
+    ],
+    "t03": [
+      "Comparator 다중 조건 정렬",
+      "Arrays.sort vs Collections.sort (원시타입 퀵소트 최악 O(n^2))",
+      "HashMap 빈도수 세기 getOrDefault/merge",
+      "TreeMap의 floorKey/ceilingKey",
+      "정렬 후 그리디/투포인터로 넘어가는 신호"
+    ],
+    "t04": [
+      "괄호·짝맞춤 패턴",
+      "ArrayDeque를 Stack/Queue 둘 다로 쓰기",
+      "모노토닉 스택(다음 큰 원소)",
+      "회전·슬라이딩에서 덱 쓰기"
+    ],
+    "t05": [
+      "PriorityQueue 기본 최소힙, Comparator로 최대힙",
+      "삽입·삭제 O(log n)이 주는 이득",
+      "두 힙으로 중앙값 유지",
+      "지연 삭제(lazy deletion) 기법"
+    ],
+    "t06": [
+      "prefix[i+1]=prefix[i]+a[i] 와 구간합 O(1)",
+      "2차원 누적합",
+      "슬라이딩 윈도우 확장·축소 조건",
+      "정렬된 배열에서 양끝 포인터",
+      "구간/부분합 질의가 반복되면 떠올릴 신호"
+    ],
+    "t07": [
+      "lower_bound/upper_bound 경계 설계",
+      "파라메트릭 서치: 답을 이분하고 가능성 판정",
+      "단조성(monotonicity) 확인이 전제",
+      "mid 계산 시 오버플로 회피 lo+(hi-lo)/2"
+    ],
+    "t08": [
+      "순열·조합·부분집합 재귀 골격",
+      "visited 체크와 되돌리기(undo)",
+      "가지치기 조건이 성능의 핵심",
+      "입력 크기로 완전탐색 가능 여부 역산하기"
+    ],
+    "t09": [
+      "인접행렬 vs 인접리스트 선택",
+      "BFS=최단거리(간선 가중치 1), DFS=경로·연결성",
+      "방문처리 시점(큐에 넣을 때)",
+      "다중 시작점 BFS",
+      "0-1 BFS와 덱"
+    ],
+    "t10": [
+      "다익스트라: 우선순위큐 + dist 배열, 음수간선 불가",
+      "플로이드워셜: O(V^3), 모든 쌍",
+      "유니온파인드: 경로압축+랭크",
+      "크루스칼 MST = 정렬 + 유니온파인드"
+    ],
+    "t11": [
+      "상태 정의 → 점화식 → 초기값 → 순회 순서",
+      "탑다운(메모이제이션) vs 바텀업",
+      "대표 골격: LIS, 배낭, 편집거리, 격자경로",
+      "부분문제 중복과 최적 부분구조 확인"
+    ],
+    "t12": [
+      "교환논증으로 정당성 확인",
+      "정렬 기준이 곧 전략",
+      "회의실 배정·거스름돈 대표 패턴",
+      "DP로 가야 하는 경우와 구분하는 기준"
+    ]
+  },
+  "rust_alerts": [],
+  "heatmap": [],
+  "errors": [
+    {
+      "cause": "유형미인지",
+      "desc": "어떤 알고리즘을 써야 할지 떠올리지 못함",
+      "count": 0
+    },
+    {
+      "cause": "복잡도오판",
+      "desc": "시간/공간 복잡도를 잘못 계산해 시간초과",
+      "count": 0
+    },
+    {
+      "cause": "경계조건",
+      "desc": "빈 입력, 원소 1개, 최대값, 동일값 등 엣지케이스",
+      "count": 0
+    },
+    {
+      "cause": "자료구조선택",
+      "desc": "맞는 답이지만 비효율적/부적절한 자료구조",
+      "count": 0
+    },
+    {
+      "cause": "구현실수",
+      "desc": "인덱스, off-by-one, 조건문 뒤집힘 등 코딩 실수",
+      "count": 0
+    },
+    {
+      "cause": "문제오독",
+      "desc": "요구사항을 잘못 읽음",
+      "count": 0
+    },
+    {
+      "cause": "API미숙",
+      "desc": "Java 표준 API 사용법이 막힘 (Deque, TreeMap, Comparator 등)",
+      "count": 0
+    },
+    {
+      "cause": "수학오버플로",
+      "desc": "int 오버플로, 모듈러, 조합/확률 공식",
+      "count": 0
+    }
+  ],
+  "review_queue": [],
+  "time_trend": [],
+  "recent": [],
+  "recommendation": {
+    "mode": "new",
+    "reason": "진단 단계다. 12유형 중 아직 손대지 않은 12개가 남았고 커리큘럼 순서상 구현·시뮬레이션 차례다.",
+    "suggested_level": 2,
+    "type": "구현·시뮬레이션",
+    "type_id": "t01",
+    "target": null
+  },
+  "type_names": {
+    "t01": "구현·시뮬레이션",
+    "t02": "문자열",
+    "t03": "정렬·해시",
+    "t04": "스택·큐·덱",
+    "t05": "힙·우선순위큐",
+    "t06": "누적합·투포인터",
+    "t07": "이진탐색",
+    "t08": "완전탐색·백트래킹",
+    "t09": "BFS·DFS",
+    "t10": "최단경로·유니온파인드",
+    "t11": "DP",
+    "t12": "그리디"
+  }
+}
