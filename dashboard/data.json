@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T23:20:15",
+  "generated_at": "2026-11-09T23:43:32",
   "phase": "진단",
   "weekly_goal": 5,
   "totals": {
@@ -20,13 +20,13 @@
   "types": [
     {
       "id": "t01",
-      "name": "구현 시뮬레이션",
+      "name": "구현과 시뮬레이션",
       "mastery": 0,
       "base": 0,
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 25,
       "targets": {
@@ -44,7 +44,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 25,
       "targets": {
@@ -62,7 +62,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 22,
       "targets": {
@@ -80,7 +80,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 22,
       "targets": {
@@ -98,7 +98,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 25,
       "targets": {
@@ -116,7 +116,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 25,
       "targets": {
@@ -134,7 +134,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 28,
       "targets": {
@@ -152,7 +152,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 30,
       "targets": {
@@ -170,7 +170,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 30,
       "targets": {
@@ -188,7 +188,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 35,
       "targets": {
@@ -206,7 +206,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 35,
       "targets": {
@@ -224,7 +224,7 @@
       "samples": 0,
       "last_seen": null,
       "days_since": null,
-      "status": "표본 0",
+      "status": "기록 없음",
       "avg_minutes": null,
       "target_minutes": 28,
       "targets": {
@@ -362,14 +362,14 @@
   "recent": [],
   "recommendation": {
     "mode": "new",
-    "reason": "진단 단계다. 12유형 중 아직 손대지 않은 12개가 남았고 커리큘럼 순서상 구현 시뮬레이션 차례다.",
+    "reason": "진단 단계다. 아직 풀지 않은 유형이 12개 남았고, 순서상 구현과 시뮬레이션 차례다.",
     "suggested_level": 2,
-    "type": "구현 시뮬레이션",
+    "type": "구현과 시뮬레이션",
     "type_id": "t01",
     "target": null
   },
   "type_names": {
-    "t01": "구현 시뮬레이션",
+    "t01": "구현과 시뮬레이션",
     "t02": "문자열",
     "t03": "정렬과 해시",
     "t04": "스택과 큐",

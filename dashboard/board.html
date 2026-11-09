@@ -39,7 +39,7 @@
   /* 머리말 */
   .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
        padding-bottom:14px;border-bottom:1px solid var(--grid)}
-  .top .sub{font-size:12px;color:var(--muted)}
+  .top .sub{font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
   .phase{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
          padding:3px 9px;border-radius:999px;border:1px solid var(--ring);color:var(--ink2)}
   .phase b{color:var(--accent)}
@@ -155,7 +155,7 @@
   <div class="top">
     <div>
       <h1>코딩테스트 역량 보드</h1>
-      <div class="sub">하루 한 문제, Java &nbsp;&nbsp; <span id="gen"></span></div>
+      <div class="sub"><span>하루 한 문제, Java</span><span id="gen"></span></div>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <span class="phase">단계 <b id="phase">—</b></span>
@@ -173,38 +173,38 @@
   <section>
     <div class="sec-head"><div>
       <p class="eyebrow">역량</p>
-      <p>진한 바는 현재 점수, 연한 트랙은 감쇠 전 점수(base)다. <b>두 값의 차이가 감쇠량</b>이다.
-         반감기는 60일이므로 마지막 시도로부터 30일 경과 시 71%, 60일 경과 시 50%가 된다.</p>
+      <p>진한 막대가 현재 점수, 연한 막대가 감쇠 전 점수다. <b>두 값의 차이가 안 푼 기간 때문에 내려간 점수다.</b>
+         점수는 60일마다 절반으로 줄어든다. 마지막으로 푼 날에서 30일이 지나면 71%, 60일이 지나면 50%가 된다.</p>
     </div></div>
     <div class="legend">
       <span><i class="sw" style="background:var(--accent)"></i>현재 점수</span>
-      <span><i class="sw" style="background:var(--track)"></i>감쇠 전 점수(base)</span>
-      <span><i class="sw" style="border:1px dashed var(--axis);background:transparent"></i>표본 0</span>
+      <span><i class="sw" style="background:var(--track)"></i>감쇠 전 점수</span>
+      <span><i class="sw" style="border:1px dashed var(--axis);background:transparent"></i>아직 안 푼 유형</span>
     </div>
     <div style="overflow-x:auto"><table class="tbl" id="types"></table></div>
   </section>
 
   <section id="s-rust" hidden>
-    <p class="eyebrow">마지막 시도 14일 이상 경과</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">감쇠 전 점수(base)는 남아 있고, 마지막 시도 이후 경과한 일수만큼 현재 점수가 내려간 유형이다.</p>
+    <p class="eyebrow">14일 넘게 안 푼 유형</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">감쇠 전 점수는 그대로다. 안 푼 기간만큼 현재 점수가 내려갔다. 한 번 다시 풀면 경과일이 0이 되어 점수가 올라온다.</p>
     <div class="rust" id="rust"></div>
   </section>
 
   <section>
     <p class="eyebrow">오답 원인</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">기록에 분류된 오답 원인별 횟수다. 3회 이상 반복된 원인에는 표시가 붙는다.</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">틀린 이유를 분류해 센 횟수다. 3회 이상 반복된 원인에는 표시가 붙는다.</p>
     <div id="errors"></div>
   </section>
 
   <section>
-    <p class="eyebrow">목표시간 대비</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">소요시간에서 목표시간을 뺀 값이다. 오른쪽으로 뻗은 막대가 목표 초과다.</p>
+    <p class="eyebrow">목표시간과의 차이</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">푸는 데 걸린 시간에서 목표시간을 뺀 값이다. 오른쪽으로 뻗은 막대가 목표를 넘긴 날이다.</p>
     <div id="time"></div>
   </section>
 
   <section>
-    <p class="eyebrow">복습 큐</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1, 3, 7, 21, 60일 뒤 같은 문제가 다시 배정된다. 시간내 정답이 3회 연속이면 큐에서 제거된다.</p>
+    <p class="eyebrow">복습 목록</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1, 3, 7, 21, 60일 뒤에 같은 문제를 다시 푼다. 시간 안에 세 번 연속 맞히면 목록에서 빠진다.</p>
     <div style="overflow-x:auto"><table class="tbl" id="queue"></table></div>
   </section>
 
@@ -220,7 +220,7 @@
   </section>
 
   <div class="foot">
-    <span>mastery = base × 0.5^(경과일/60)</span>
+    <span>현재 점수 = 감쇠 전 점수 × 0.5^(마지막으로 푼 뒤 지난 날/60)</span>
     <span>결과 점수: 시간내 정답 1.0, 시간초과 정답 0.7, 힌트 후 정답 0.4, 미해결 0.1</span>
     <span>점수 구간: 80 이상, 60-79, 35-59, 35 미만</span>
     <span>주 목표 5일</span>
@@ -240,7 +240,7 @@
   const OUT_RANK = {failed:0, solved_with_hint:1, solved_over_time:2, solved_in_time:3};
   const HM = ['var(--h4)','var(--h3)','var(--h2)','var(--h1)'];
   const STATUS = {'80 이상':'var(--ok)', '60-79':'var(--accent)', '35-59':'var(--warn)',
-                  '35 미만':'var(--crit)', '표본 0':'var(--axis)'};
+                  '35 미만':'var(--crit)', '기록 없음':'var(--axis)'};
   const $ = s => document.querySelector(s);
   const el = (t,c,h) => { const n=document.createElement(t); if(c)n.className=c;
                           if(h!=null)n.innerHTML=h; return n; };
@@ -260,7 +260,7 @@
       m.append(el('div',null,`유형<strong>${(t.types||[]).map(i=>esc(names(d)[i]||i)).join(', ')}</strong>`));
       m.append(el('div',null,`난이도<strong class="num">Lv.${esc(t.level)}</strong>`));
       m.append(el('div',null,`지난 결과<strong>${esc(OUT[t.last_outcome]||t.last_outcome)}</strong>`));
-      m.append(el('div',null,`지난 오답원인<strong>${(t.errors||[]).map(esc).join(', ')||'없음'}</strong>`));
+      m.append(el('div',null,`지난 오답 원인<strong>${(t.errors||[]).map(esc).join(', ')||'없음'}</strong>`));
       m.append(el('div',null,`시도<strong class="num">${esc(t.total_attempts)}회</strong>`));
       box.append(m);
       if(t.url) box.append(el('p',null,`<a href="${esc(t.url)}" target="_blank" rel="noopener">문제 열기 →</a>`));
@@ -274,7 +274,7 @@
       const tgt = (row.targets||{})[String(r.suggested_level)] || row.target_minutes;
       m.append(el('div',null,`목표시간<strong class="num">${esc(tgt||'—')}분</strong>`));
       m.append(el('div',null,`현재 숙련도<strong class="num">${esc(row.mastery??0)}</strong>`));
-      m.append(el('div',null,`표본<strong class="num">${esc(row.samples??0)}</strong>`));
+      m.append(el('div',null,`기록<strong class="num">${esc(row.samples??0)}건</strong>`));
       box.append(m);
       const cs = (d.concepts||{})[tid] || [];
       if(cs.length){
@@ -299,10 +299,10 @@
       return n;
     };
     box.append(tile('이번 주', String(s.this_week||0), '/ '+(s.weekly_goal||5)+'일', wk));
-    box.append(tile('주단위 연속', String(s.week||0), '주'));
-    box.append(tile('유형 커버리지', String(t.types_touched||0), '/ '+(t.types_total||12),
+    box.append(tile('연속 달성', String(s.week||0), '주'));
+    box.append(tile('푼 유형', String(t.types_touched||0), '/ '+(t.types_total||12),
                     (t.types_touched||0)/(t.types_total||12)*100));
-    box.append(tile('평균 숙련도', String(t.avg_mastery||0), '/ 100', t.avg_mastery||0));
+    box.append(tile('평균 점수', String(t.avg_mastery||0), '/ 100', t.avg_mastery||0));
   }
 
   /* ---- 역량 ---- */
@@ -312,9 +312,9 @@
     const order = {}; (d.types||[]).forEach((r,i)=>order[r.id]=i+1);
     if(!diag) rows.sort((a,b)=>a.mastery-b.mastery || (b.days_since||0)-(a.days_since||0));
     const t = $('#types');
-    t.innerHTML = `<thead><tr><th>유형</th><th style="width:34%">숙련도</th><th class="r">점수</th>
-      <th class="r">base</th><th class="r hide-s">표본</th><th class="r hide-s">최근</th>
-      <th class="r hide-s">평균/목표</th><th>상태</th></tr></thead>`;
+    t.innerHTML = `<thead><tr><th>유형</th><th style="width:34%">점수</th><th class="r">현재</th>
+      <th class="r">감쇠 전</th><th class="r hide-s">기록</th><th class="r hide-s">마지막</th>
+      <th class="r hide-s">평균/목표(분)</th><th>점수 구간</th></tr></thead>`;
     const tb = el('tbody');
     rows.forEach(r=>{
       const tr = el('tr');
@@ -322,8 +322,8 @@
       tr.append(el('td',null,nm));
       const bar = el('div','bar'+(r.samples?'':' untested'));
       bar.dataset.tip = r.samples
-        ? `${r.name}: 현재 ${r.mastery}, base ${r.base}, 마지막 시도 ${r.days_since}일 전, 표본 ${r.samples}`
-        : `${r.name}: 아직 측정하지 않았다. 표본 0.`;
+        ? `${r.name}: 현재 ${r.mastery}점, 감쇠 전 ${r.base}점, ${r.days_since}일 전에 마지막으로 풀었고, 기록 ${r.samples}건`
+        : `${r.name}: 아직 한 번도 풀지 않았다.`;
       if(r.samples){
         const b = el('i','base'); b.style.width = Math.max(2,r.base)+'%';
         const n = el('i','now'); n.style.width = Math.max(2,r.mastery)+'%';
@@ -349,7 +349,7 @@
     list.forEach(r=>{
       const n = el('div');
       n.append(el('div','n', esc(r.name)));
-      n.append(el('div','d', `마지막 시도 <b>${r.days_since}일</b> 전, base <b>${r.base}</b>, 현재 <b>${r.mastery}</b>, 감쇠량 <b>${r.base-r.mastery}</b>`));
+      n.append(el('div','d', `<b>${r.days_since}일</b> 전에 마지막으로 풀었다. 감쇠 전 <b>${r.base}점</b>에서 현재 <b>${r.mastery}점</b>으로 <b>${r.base-r.mastery}점</b> 내려갔다.`));
       box.append(n);
     });
   }
@@ -361,7 +361,7 @@
     if(!list.length){ box.append(el('div','locked','아직 분류된 오답 원인이 없다.')); return; }
     const max = Math.max(...list.map(e=>e.count));
     const t = el('table','tbl');
-    t.innerHTML = `<thead><tr><th>원인</th><th style="width:40%">횟수</th><th class="r">회</th><th class="hide-s">정의</th></tr></thead>`;
+    t.innerHTML = `<thead><tr><th>원인</th><th style="width:40%">분포</th><th class="r">횟수</th><th class="hide-s">설명</th></tr></thead>`;
     const tb = el('tbody');
     list.forEach(e=>{
       const tr = el('tr');
@@ -406,7 +406,7 @@
     const t = $('#queue');
     const q = d.review_queue||[];
     t.innerHTML = `<thead><tr><th>D-day</th><th>문제</th><th class="hide-s">유형</th><th class="r">Lv</th>
-      <th>지난 결과</th><th class="hide-s">지난 원인</th><th class="r hide-s">간격</th></tr></thead>`;
+      <th>지난 결과</th><th class="hide-s">지난 오답 원인</th><th class="r hide-s">다음 간격</th></tr></thead>`;
     const tb = el('tbody');
     if(!q.length){ tb.innerHTML = `<tr><td colspan="7" style="color:var(--muted)">복습 예정이 없다. 신규 문제를 푼다.</td></tr>`; }
     q.forEach(x=>{
@@ -457,7 +457,7 @@
   function recent(d){
     const t = $('#recent'), rows = d.recent||[];
     t.innerHTML = `<thead><tr><th>날짜</th><th>문제</th><th class="hide-s">유형</th><th class="r">Lv</th>
-      <th class="r">분/목표</th><th>결과</th><th class="hide-s">원인</th><th class="hide-s">모드</th></tr></thead>`;
+      <th class="r">소요/목표(분)</th><th>결과</th><th class="hide-s">오답 원인</th><th class="hide-s">구분</th></tr></thead>`;
     const tb = el('tbody');
     if(!rows.length){ tb.innerHTML = `<tr><td colspan="8" style="color:var(--muted)">기록이 없다. 오늘 첫 문제를 풀면 여기 쌓인다.</td></tr>`; }
     rows.forEach(r=>{
@@ -496,7 +496,7 @@
     const note = $('#note');
     if(which==='demo'){
       note.hidden = false;
-      note.innerHTML = '<b>예시 데이터</b> 19일치 가상 기록을 같은 계산식에 넣어 생성한 화면이다. 실제 기록을 보려면 위에서 “내 기록”을 누른다.';
+      note.innerHTML = '<b>예시 데이터</b> 가상 기록 19일치로 만든 화면이다. 실제 기록을 보려면 위에서 “내 기록”을 누른다.';
     } else if(locked){
       note.hidden = false;
       note.innerHTML = `<b>진단 단계</b> 기록 ${(d.totals||{}).records||0}건. 12유형을 한 번씩 풀어 현재 상태를 측정하는 중이다. 차트는 기록 ${MIN_RECORDS}건부터 표시한다. 아래 “역량” 표의 번호가 진단 순서다.`;

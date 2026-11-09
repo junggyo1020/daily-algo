@@ -88,6 +88,11 @@ def main():
     for w in banned:
         chk(w not in docs, f"평가어 '{w}' 미사용")
     chk("·" not in docs + code, "가운뎃점(·) 미사용 — 사용자 이름으로 공개되는 문서 규칙")
+    # 부정형 대조("A가 아니라 B")는 문장을 길게 만들고 무엇을 말하는지 흐린다
+    for w in ["이 아니라", "가 아니라", "에 그치지 않고"]:
+        chk(w not in docs, f"부정형 대조 '{w}' 미사용")
+    for w in ["표본", "트랙", "커버리지", "터치"]:
+        chk(w not in docs, f"전문용어 '{w}' 미사용")
     wg = re.search(r"WEEKLY_GOAL = (\d+)", code)
     chk(wg and f"주 {wg.group(1)}일" in docs, f"주간 목표 {wg.group(1) if wg else '?'}일 일치")
     out_codes = set(re.findall(r'"(solved_\w+|failed)": [\d.]+', code))

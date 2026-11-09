@@ -169,7 +169,7 @@ def mastery_table(cfg, log, ref=None):
             rows.append({
                 "id": t["id"], "name": t["name"], "mastery": 0, "base": 0,
                 "samples": 0, "last_seen": None, "days_since": None,
-                "status": "표본 0", "avg_minutes": None,
+                "status": "기록 없음", "avg_minutes": None,
                 "target_minutes": t["target_minutes"].get("2"),
                 "targets": t["target_minutes"],
                 "outcomes": {}, "concepts": t["concepts"],
@@ -316,7 +316,7 @@ def recommend(cfg, log, ref=None):
     if overdue:
         pick = overdue[0]
         return {"phase": phase, "mode": "review", "target": pick,
-                "reason": f"복습이 {-pick['days_until']}일 밀렸다. 밀린 복습이 2일 이상이면 신규보다 먼저 처리한다.",
+                "reason": f"복습이 {-pick['days_until']}일 밀렸다. 2일 이상 밀린 복습은 새 문제보다 먼저 푼다.",
                 "suggested_level": pick["level"], "rows": rows, "queue": q}
 
     if phase == "진단":
@@ -324,13 +324,13 @@ def recommend(cfg, log, ref=None):
         if untouched:
             tid = untouched[0]
             return {"phase": phase, "mode": "new", "type": by_id[tid],
-                    "reason": f"진단 단계다. 12유형 중 아직 손대지 않은 {len(untouched)}개가 남았고 커리큘럼 순서상 {by_id[tid]['name']} 차례다.",
+                    "reason": f"진단 단계다. 아직 풀지 않은 유형이 {len(untouched)}개 남았고, 순서상 {by_id[tid]['name']} 차례다.",
                     "suggested_level": 2, "rows": rows, "queue": q}
 
     if due and reviews_this_week < 2:
         pick = due[0]
         return {"phase": phase, "mode": "review", "target": pick,
-                "reason": f"복습 예정일이 됐고 이번 주 복습이 {reviews_this_week}회뿐이다(주 2회 목표).",
+                "reason": f"복습 예정일이 됐다. 이번 주 복습은 {reviews_this_week}회로 목표 2회에 못 미친다.",
                 "suggested_level": pick["level"], "rows": rows, "queue": q}
 
     weak = sorted(
@@ -340,7 +340,7 @@ def recommend(cfg, log, ref=None):
     tid = weak[0]["id"] if weak else order[0]
     lvl = 3 if phase == "실전" else 2
     return {"phase": phase, "mode": "new", "type": by_id[tid],
-            "reason": f"숙련도가 가장 낮은 유형이 {by_id[tid]['name']}({by_id[tid]['mastery']}점)이다.",
+            "reason": f"점수가 가장 낮은 유형이 {by_id[tid]['name']}이고 {by_id[tid]['mastery']}점이다.",
             "suggested_level": lvl, "rows": rows, "queue": q}
 
 
@@ -357,18 +357,18 @@ def cmd_today(args):
         print(f"       지난 시도 {t['last_date']} / {t['last_outcome']} / 원인: {', '.join(t['errors']) or '-'}")
         print(f"       {t['url']}")
         if t.get("solution_path"):
-            print(f"       이전 풀이 {t['solution_path']}  ← 지금 열지 말 것. 피드백 단계에서 비교용으로만 연다")
+            print(f"       이전 풀이 {t['solution_path']}  (지금 열지 말 것. 피드백 단계에서 비교용으로 연다)")
     else:
         t = rec["type"]
         tgt = next(x for x in cfg["types"] if x["id"] == t["id"])
-        print(f"[유형] {t['name']}  (숙련도 {t['mastery']} / 표본 {t['samples']})")
+        print(f"[유형] {t['name']}  (현재 {t['mastery']}점, 기록 {t['samples']}건)")
         print(f"[난이도] 프로그래머스 Lv.{rec['suggested_level']}  목표시간 {tgt['target_minutes'][str(rec['suggested_level'])]}분")
         print("[개념 체크리스트]")
         for c in t["concepts"]:
             print(f"  - {c}")
     overdue = [x for x in rec["queue"] if x["days_until"] <= 0]
     if overdue:
-        print(f"\n[복습 대기] {len(overdue)}건")
+        print(f"\n[복습 예정일이 지난 문제] {len(overdue)}건")
         for x in overdue[:5]:
             print(f"  D{x['days_until']:+d} {x['title']} ({x['last_outcome']})")
 
@@ -377,10 +377,10 @@ def cmd_stats(args):
     cfg, log = load_types(), load_log()
     rows = mastery_table(cfg, log)
     st = streaks(log)
-    print(f"총 {len(log)}회 기록 / 단계: {phase_of(rows)}")
-    print(f"연속 {st['day']}일   주간 {st['this_week']}/{st['weekly_goal']}   "
-          f"주단위 연속 {st['week']}주\n")
-    print(f"{'유형':<20}{'숙련도':>6} {'상태':<6}{'표본':>4}{'최근':>6}  평균/목표")
+    print(f"기록 {len(log)}건, 단계 {phase_of(rows)}")
+    print(f"연속 {st['day']}일   이번 주 {st['this_week']}/{st['weekly_goal']}   "
+          f"연속 달성 {st['week']}주\n")
+    print(f"{'유형':<20}{'점수':>6} {'구간':<8}{'기록':>4}{'최근':>6}  평균/목표(분)")
     for r in rows:
         ds = "-" if r["days_since"] is None else f"{r['days_since']}일"
         tm = f"{r['avg_minutes']}/{r['target_minutes']}분" if r["avg_minutes"] else "-"
@@ -388,7 +388,7 @@ def cmd_stats(args):
         print(f"{r['name']:<20}{r['mastery']:>6} {r['status']:<6}{r['samples']:>4}{ds:>6}  {tm:<12}{bar}")
     errs = Counter(e for r in log for e in r.get("errors", []))
     if errs:
-        print("\n오답 원인 분포")
+        print("\n틀린 이유")
         for k, v in errs.most_common():
             print(f"  {k:<14}{v}회")
 
