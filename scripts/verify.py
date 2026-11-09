@@ -120,7 +120,20 @@ def main():
     for ref in sorted(set(re.findall(r"algo-[a-z-]+", docs))):
         chk(ref in names, f"참조 '{ref}' 가 실존하는 에이전트/스킬")
 
-    print("[6] 엔진과 빌드 실행")
+    print("[6] 커밋 메시지")
+    log = subprocess.run(["git", "log", "--format=%s"], capture_output=True, text=True).stdout
+    subjects = [l for l in log.splitlines() if l.strip()]
+    if subjects:
+        pat = re.compile(r"^\[(feat|fix|refactor|docs|chore|test|style)\] .+[^.]$")
+        bad = [s_ for s_ in subjects if not pat.match(s_)]
+        chk(not bad, "제목이 모두 [type] 한글 설명 형식" + (f" — 어긋남: {bad[:2]}" if bad else ""))
+        body = subprocess.run(["git", "log", "--format=%B"], capture_output=True, text=True).stdout
+        chk("Co-Authored-By: Claude" not in body, "커밋에 생성 도구 표기 없음")
+        chk("·" not in body, "커밋 메시지에 가운뎃점 없음")
+    else:
+        chk(True, "커밋 없음 (검사 생략)")
+
+    print("[7] 엔진과 빌드 실행")
     for cmd in (["scripts/algo.py", "today"], ["scripts/algo.py", "stats"],
                 ["scripts/algo.py", "export"], ["scripts/build_dashboard.py"]):
         r = subprocess.run([sys.executable] + cmd, capture_output=True, text=True)
