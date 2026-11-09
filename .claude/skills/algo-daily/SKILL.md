@@ -143,9 +143,14 @@ python3 scripts/algo.py log \
 ```bash
 python3 scripts/algo.py export
 git add -A && git commit -q -m "$(date +%Y-%m-%d) 기능개발 (스택·큐·덱, solved_over_time)"
+git push
 python3 scripts/algo.py stats
 ```
 커밋 그래프 자체가 학습 로그다. 그래서 하루 1커밋을 지킨다.
+
+**커밋은 사용자 본인 명의다.** 저장소 로컬 git 신원이 이미 설정돼 있으니 `-c user.email=...`로
+덮어쓰지 않는다. 그리고 커밋 메시지에 `Co-Authored-By: Claude`나 생성 도구 표기를
+**붙이지 않는다** — 이 저장소는 사용자의 공개 학습 기록이고, 커밋은 사용자가 푼 문제의 기록이다.
 
 ## 마무리 한마디
 
