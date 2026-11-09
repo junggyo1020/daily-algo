@@ -1,6 +1,6 @@
 ---
 name: algo-daily
-description: 하루 한 문제 코딩테스트 루틴을 처음부터 끝까지 진행한다 — 오늘 풀 문제 결정(복습/신규), 개념 리마인드, 문제 제시와 타이머, 풀이 피드백, 기록·커밋까지. "오늘 문제", "코테 시작", "알고리즘 공부 시작", "오늘 뭐 풀지", "하루 한 문제", "코테 루틴", "daily algo", "오늘치 풀자", "복습할 거 있어?", 퇴근 후 공부 시작을 알리는 말 모두 이 스킬로 진행한다. 풀이 코드만 피드백받으려면 algo-feedback, 개념만 물으면 algo-concept, 주간 진단은 algo-weekly.
+description: 하루 한 문제 코딩테스트 루틴을 처음부터 끝까지 진행한다 — 오늘 풀 문제 결정(복습/신규), 개념 리마인드, 문제 제시와 타이머, 풀이 피드백, 기록과 커밋까지. "오늘 문제", "코테 시작", "알고리즘 공부 시작", "오늘 뭐 풀지", "하루 한 문제", "코테 루틴", "daily algo", "오늘치 풀자", "복습할 거 있어?", 퇴근 후 공부 시작을 알리는 말 모두 이 스킬로 진행한다. 풀이 코드만 피드백받으려면 algo-feedback, 개념만 물으면 algo-concept, 주간 진단은 algo-weekly.
 ---
 
 # 하루 한 문제 루틴
@@ -38,8 +38,8 @@ cd ~/willy/GitHub/daily-algo && python3 scripts/algo.py today
 | 모드 | 구성 | 쓸 때 |
 |---|---|---|
 | 기본 45분 | 개념 8분 → 풀이 25분 → 피드백 7분 → 기록 5분 | 평소 |
-| 축소 25분 | 개념 생략 → 복습 또는 Lv.1 신규 20분 → 기록 5분 | 야근·피로·교대 |
-| 타임어택 60분 | 2문제 블라인드, 개념·피드백은 끝에 몰아서 | 주말 선택 |
+| 축소 25분 | 개념 생략 → 복습 또는 Lv.1 신규 20분 → 기록 5분 | 야근, 피로, 교대 근무일 |
+| 타임어택 60분 | 2문제 블라인드, 개념과 피드백은 끝에 몰아서 | 주말 선택 |
 
 축소모드도 **기록은 반드시 남긴다**. 기록이 빠지면 숙련도 감쇠가 잘못 계산돼 대시보드가 거짓이 된다.
 
@@ -105,7 +105,7 @@ cd ~/willy/GitHub/daily-algo && java src/main/java/daily/D...java
 
 먼저 노트를 쓴다 — `notes/{YYYY-MM-DD}.md`:
 ```markdown
-# 2026-11-09 · 스택·큐·덱 · 기능개발 (Lv.2)
+# 2026-11-09 기능개발 (스택과 큐, Lv.2)
 ## 어떻게 접근했나
 ## 막힌 지점과 이유
 ## 배운 Java API / 패턴
@@ -142,7 +142,7 @@ python3 scripts/algo.py log \
 마지막으로 대시보드와 커밋:
 ```bash
 python3 scripts/algo.py export
-git add -A && git commit -q -m "$(date +%Y-%m-%d) 기능개발 (스택·큐·덱, solved_over_time)"
+git add -A && git commit -q -m "$(date +%Y-%m-%d) 기능개발 (스택과 큐, solved_over_time)"
 git push
 python3 scripts/algo.py stats
 ```
@@ -154,10 +154,10 @@ python3 scripts/algo.py stats
 
 ## 마무리 한마디
 
-`stats` 출력에서 **오늘 바뀐 지표 한 개만** 짚는다(예: "스택·큐·덱 0 → 70, 이제 미진단 7개 남음").
+`stats` 출력에서 **오늘 바뀐 지표 한 개만** 짚는다(예: "스택과 큐 0 → 70, 표본 0인 유형 7개 남음").
 전체 표를 다시 해설하지 않는다. 지친 상태에서 긴 요약은 읽히지 않는다.
 주간 진단이 밀렸으면(`this_week`가 5에 도달했거나 토요일) `algo-weekly`를 권한다.
 
 ## 참고
-- 유형 12종·오답원인 8종 정의: `data/types.json`
+- 유형 12종과 오답원인 8종 정의: `data/types.json`
 - 모드별 시간 배분과 예외 처리 세부: `references/session-protocol.md`

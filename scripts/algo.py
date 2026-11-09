@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """daily-algo 학습 엔진.
 
-log.jsonl 하나를 단일 진실 원천으로 삼고, 숙련도·복습큐·스트릭·대시보드 데이터를
+log.jsonl 하나를 단일 진실 원천으로 삼고, 숙련도, 복습큐, 스트릭, 대시보드 데이터를
 모두 거기서 파생한다. 상태를 따로 저장하지 않으므로 기록과 지표가 어긋날 수 없다.
 
 사용법:
@@ -91,7 +91,7 @@ def load_log():
 
 
 def type_target(cfg, type_id, level):
-    """유형×난이도 목표시간. types.json에 없는 난이도(Lv.4·5)는 가장 높은 단계로 올려 쓴다."""
+    """유형×난이도 목표시간. types.json에 없는 난이도(Lv.4, Lv.5)는 가장 높은 단계로 올려 쓴다."""
     t = next((x for x in cfg["types"] if x["id"] == type_id), None)
     if not t:
         return 0
@@ -169,7 +169,7 @@ def mastery_table(cfg, log, ref=None):
             rows.append({
                 "id": t["id"], "name": t["name"], "mastery": 0, "base": 0,
                 "samples": 0, "last_seen": None, "days_since": None,
-                "status": "미진단", "avg_minutes": None,
+                "status": "표본 0", "avg_minutes": None,
                 "target_minutes": t["target_minutes"].get("2"),
                 "targets": t["target_minutes"],
                 "outcomes": {}, "concepts": t["concepts"],
@@ -185,14 +185,16 @@ def mastery_table(cfg, log, ref=None):
         days_since = (ref - last).days
         recency = 0.5 ** (days_since / half)
         mastery = round(100 * base * recency)
+        # 평가어("견고", "취약") 대신 점수 구간을 그대로 노출한다.
+        # 평가어는 읽는 사람마다 기준이 달라지고, 구간은 기준이 화면에 드러난다.
         if mastery >= 80:
-            status = "견고"
+            status = "80 이상"
         elif mastery >= 60:
-            status = "양호"
+            status = "60-79"
         elif mastery >= 35:
-            status = "불안"
+            status = "35-59"
         else:
-            status = "취약"
+            status = "35 미만"
         mins = [r["minutes"] for r in recs[-3:] if r.get("minutes")]
         # 목표시간은 실제로 푼 문제들의 목표를 평균낸다. 고정 Lv.2 기준으로 비교하면
         # Lv.3 문제를 푼 유형이 늘 "느린" 것처럼 보인다.
@@ -214,7 +216,7 @@ def mastery_table(cfg, log, ref=None):
 def review_queue(log, ref=None):
     """문제별 다음 복습일. 간격 반복이 이 루틴의 핵심 장치다.
 
-    새 문제만 계속 푸는 공부는 쌓이지 않는다. 틀린 문제를 1·3·7·21·60일 간격으로
+    새 문제만 계속 푸는 공부는 쌓이지 않는다. 틀린 문제를 1, 3, 7, 21, 60일 간격으로
     다시 풀어 '그때 왜 틀렸는지'가 반사신경이 될 때까지 끌고 간다.
     """
     ref = ref or today()
@@ -231,7 +233,7 @@ def review_queue(log, ref=None):
         last = recs[-1]
         if last["outcome"] == "solved_in_time":
             if clean >= 3:
-                continue  # 졸업 — 21일·60일 확인을 모두 통과했다
+                continue  # 졸업 — 21일과 60일 확인을 모두 통과했다
             interval = REVIEW_INTERVAL["solved_in_time"][min(clean - 1, 1)]
         else:
             interval = REVIEW_INTERVAL[last["outcome"]]
@@ -376,7 +378,8 @@ def cmd_stats(args):
     rows = mastery_table(cfg, log)
     st = streaks(log)
     print(f"총 {len(log)}회 기록 / 단계: {phase_of(rows)}")
-    print(f"연속 {st['day']}일 · 주간 {st['this_week']}/{st['weekly_goal']} · 주단위 연속 {st['week']}주\n")
+    print(f"연속 {st['day']}일   주간 {st['this_week']}/{st['weekly_goal']}   "
+          f"주단위 연속 {st['week']}주\n")
     print(f"{'유형':<20}{'숙련도':>6} {'상태':<6}{'표본':>4}{'최근':>6}  평균/목표")
     for r in rows:
         ds = "-" if r["days_since"] is None else f"{r['days_since']}일"

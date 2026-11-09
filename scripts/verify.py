@@ -5,7 +5,7 @@
 문서는 "60일 뒤 복습한다"고 하는데 코드가 거기 도달하지 못하면, 사용자는 일어나지
 않는 일을 믿고 공부하게 된다. 그런 종류만 골라서 검사한다.
 
-하네스(스킬·에이전트·엔진)를 고친 뒤와 월간 점검 때 돌린다:
+하네스(스킬, 에이전트, 엔진)를 고친 뒤와 월간 점검 때 돌린다:
     python3 scripts/verify.py
 """
 import glob
@@ -59,7 +59,7 @@ def main():
         fm = frontmatter(read(f))
         nm = re.search(r"^name:\s*(\S+)", fm, re.M)
         chk(nm and nm.group(1) == os.path.basename(f)[:-3] and "model: opus" in fm
-            and "description:" in fm, f"{os.path.basename(f)} name·description·model:opus")
+            and "description:" in fm, f"{os.path.basename(f)} name, description, model:opus")
     for f in skills:
         s = read(f)
         fm = frontmatter(s)
@@ -81,8 +81,13 @@ def main():
     chk("0.5 ** (days_since / half)" in code and "0.5^(경과일/60)" in docs, "감쇠 공식 일치")
     chk(re.search(r"half_life_days.*60", read("data", "types.json")) and "반감기 60일" in docs,
         "감쇠 반감기 일치")
-    for th, lab in [(80, "견고"), (60, "양호"), (35, "불안")]:
-        chk(f"mastery >= {th}" in code and f"{lab} {th}+" in docs, f"상태 구간 {lab} {th}+")
+    for th, lab in [(80, "80 이상"), (60, "60-79"), (35, "35-59")]:
+        chk(f"mastery >= {th}" in code and lab in docs, f"상태 구간 {lab}")
+    # 평가어가 다시 섞여 들어오지 않는지 지킨다
+    banned = ["견고", "양호", "취약", "미진단", "녹슴", "뼈아프", "나쁘지 않", "우상향"]
+    for w in banned:
+        chk(w not in docs, f"평가어 '{w}' 미사용")
+    chk("·" not in docs + code, "가운뎃점(·) 미사용 — 사용자 이름으로 공개되는 문서 규칙")
     wg = re.search(r"WEEKLY_GOAL = (\d+)", code)
     chk(wg and f"주 {wg.group(1)}일" in docs, f"주간 목표 {wg.group(1) if wg else '?'}일 일치")
     out_codes = set(re.findall(r'"(solved_\w+|failed)": [\d.]+', code))
@@ -110,7 +115,7 @@ def main():
     for ref in sorted(set(re.findall(r"algo-[a-z-]+", docs))):
         chk(ref in names, f"참조 '{ref}' 가 실존하는 에이전트/스킬")
 
-    print("[6] 엔진·빌드 실행")
+    print("[6] 엔진과 빌드 실행")
     for cmd in (["scripts/algo.py", "today"], ["scripts/algo.py", "stats"],
                 ["scripts/algo.py", "export"], ["scripts/build_dashboard.py"]):
         r = subprocess.run([sys.executable] + cmd, capture_output=True, text=True)

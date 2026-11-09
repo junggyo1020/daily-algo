@@ -104,7 +104,7 @@
   .dot{width:8px;height:8px;border-radius:50%;flex:none}
   .ord{font-family:var(--mono);font-size:11px;color:var(--muted);width:1.6em;display:inline-block}
 
-  /* 녹슴 */
+  /* 마지막 시도 경과 */
   .rust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
   .rust div{border:1px solid var(--ring);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;
             padding:11px 13px;background:var(--surface)}
@@ -155,7 +155,7 @@
   <div class="top">
     <div>
       <h1>코딩테스트 역량 보드</h1>
-      <div class="sub">하루 한 문제 · Java · <span id="gen"></span></div>
+      <div class="sub">하루 한 문제, Java &nbsp;&nbsp; <span id="gen"></span></div>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <span class="phase">단계 <b id="phase">—</b></span>
@@ -173,38 +173,38 @@
   <section>
     <div class="sec-head"><div>
       <p class="eyebrow">역량</p>
-      <p>진한 바가 현재 숙련도, 연한 트랙이 감쇠 전 실력(base)이다. <b>둘의 간격이 안 해서 떨어진 양</b>이다.
-         감쇠는 반감기 60일 — 30일 방치하면 71%가 된다.</p>
+      <p>진한 바는 현재 점수, 연한 트랙은 감쇠 전 점수(base)다. <b>두 값의 차이가 감쇠량</b>이다.
+         반감기는 60일이므로 마지막 시도로부터 30일 경과 시 71%, 60일 경과 시 50%가 된다.</p>
     </div></div>
     <div class="legend">
-      <span><i class="sw" style="background:var(--accent)"></i>현재 숙련도</span>
-      <span><i class="sw" style="background:var(--track)"></i>감쇠 전 실력(base)</span>
-      <span><i class="sw" style="border:1px dashed var(--axis);background:transparent"></i>미진단(표본 0)</span>
+      <span><i class="sw" style="background:var(--accent)"></i>현재 점수</span>
+      <span><i class="sw" style="background:var(--track)"></i>감쇠 전 점수(base)</span>
+      <span><i class="sw" style="border:1px dashed var(--axis);background:transparent"></i>표본 0</span>
     </div>
     <div style="overflow-x:auto"><table class="tbl" id="types"></table></div>
   </section>
 
   <section id="s-rust" hidden>
-    <p class="eyebrow">녹슴 경고</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">실력이 없는 게 아니라 안 해서 떨어진 유형이다. 복습 1문제로 회복된다.</p>
+    <p class="eyebrow">마지막 시도 14일 이상 경과</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">감쇠 전 점수(base)는 남아 있고, 마지막 시도 이후 경과한 일수만큼 현재 점수가 내려간 유형이다.</p>
     <div class="rust" id="rust"></div>
   </section>
 
   <section>
     <p class="eyebrow">오답 원인</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">어디서 점수를 잃는지. 같은 원인이 3회 이상이면 개별 실수가 아니라 습관이므로 체크리스트로 막는다.</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">기록에 분류된 오답 원인별 횟수다. 3회 이상 반복된 원인에는 표시가 붙는다.</p>
     <div id="errors"></div>
   </section>
 
   <section>
     <p class="eyebrow">목표시간 대비</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">정답률이 100%여도 목표시간을 계속 넘기면 실전에서는 탈락이다.</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">소요시간에서 목표시간을 뺀 값이다. 오른쪽으로 뻗은 막대가 목표 초과다.</p>
     <div id="time"></div>
   </section>
 
   <section>
     <p class="eyebrow">복습 큐</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1·3·7·21·60일 뒤 같은 문제를 다시 만난다. 21일·60일 확인을 모두 통과하면(연속 3회 시간내 정답) 졸업한다.</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1, 3, 7, 21, 60일 뒤 같은 문제가 다시 배정된다. 시간내 정답이 3회 연속이면 큐에서 제거된다.</p>
     <div style="overflow-x:auto"><table class="tbl" id="queue"></table></div>
   </section>
 
@@ -221,8 +221,8 @@
 
   <div class="foot">
     <span>mastery = base × 0.5^(경과일/60)</span>
-    <span>결과 점수 1.0 / 0.7 / 0.4 / 0.1</span>
-    <span>구간 견고 80+ · 양호 60+ · 불안 35+ · 취약 35−</span>
+    <span>결과 점수: 시간내 정답 1.0, 시간초과 정답 0.7, 힌트 후 정답 0.4, 미해결 0.1</span>
+    <span>점수 구간: 80 이상, 60-79, 35-59, 35 미만</span>
     <span>주 목표 5일</span>
   </div>
 </div>
@@ -239,8 +239,8 @@
                solved_with_hint:'힌트 후 정답', failed:'미해결'};
   const OUT_RANK = {failed:0, solved_with_hint:1, solved_over_time:2, solved_in_time:3};
   const HM = ['var(--h4)','var(--h3)','var(--h2)','var(--h1)'];
-  const STATUS = {견고:'var(--ok)', 양호:'var(--accent)', 불안:'var(--warn)',
-                  취약:'var(--crit)', 미진단:'var(--axis)'};
+  const STATUS = {'80 이상':'var(--ok)', '60-79':'var(--accent)', '35-59':'var(--warn)',
+                  '35 미만':'var(--crit)', '표본 0':'var(--axis)'};
   const $ = s => document.querySelector(s);
   const el = (t,c,h) => { const n=document.createElement(t); if(c)n.className=c;
                           if(h!=null)n.innerHTML=h; return n; };
@@ -264,7 +264,7 @@
       m.append(el('div',null,`시도<strong class="num">${esc(t.total_attempts)}회</strong>`));
       box.append(m);
       if(t.url) box.append(el('p',null,`<a href="${esc(t.url)}" target="_blank" rel="noopener">문제 열기 →</a>`));
-      box.append(el('p','why','코드를 다시 보지 않고 처음부터 작성한다. 읽어서 "아 맞다"가 되는 건 복습이 아니다.'));
+      box.append(el('p','why','이전 코드를 열지 않고 처음부터 작성한다.'));
     } else {
       const tid = r.type_id, row = (d.types||[]).find(x=>x.id===tid) || {};
       box.append(el('h2',null, esc(r.type||'—')));
@@ -278,7 +278,7 @@
       box.append(m);
       const cs = (d.concepts||{})[tid] || [];
       if(cs.length){
-        box.append(el('p','eyebrow','개념 체크리스트 — 설명 못 하는 항목부터'));
+        box.append(el('p','eyebrow','개념 체크리스트'));
         const ul = el('ul','chk');
         cs.forEach(c=>ul.append(el('li',null,esc(c))));
         box.append(ul);
@@ -322,8 +322,8 @@
       tr.append(el('td',null,nm));
       const bar = el('div','bar'+(r.samples?'':' untested'));
       bar.dataset.tip = r.samples
-        ? `${r.name} — 현재 ${r.mastery} / base ${r.base} · ${r.days_since}일 전 · 표본 ${r.samples}`
-        : `${r.name} — 아직 측정 안 됨. 0점이 아니라 미진단이다.`;
+        ? `${r.name}: 현재 ${r.mastery}, base ${r.base}, 마지막 시도 ${r.days_since}일 전, 표본 ${r.samples}`
+        : `${r.name}: 아직 측정하지 않았다. 표본 0.`;
       if(r.samples){
         const b = el('i','base'); b.style.width = Math.max(2,r.base)+'%';
         const n = el('i','now'); n.style.width = Math.max(2,r.mastery)+'%';
@@ -341,7 +341,7 @@
     t.append(tb);
   }
 
-  /* ---- 녹슴 ---- */
+  /* ---- 마지막 시도 경과 ---- */
   function rust(d){
     const list = d.rust_alerts||[], sec = $('#s-rust');
     sec.hidden = list.length === 0;
@@ -349,7 +349,7 @@
     list.forEach(r=>{
       const n = el('div');
       n.append(el('div','n', esc(r.name)));
-      n.append(el('div','d', `<b>${r.days_since}일</b> 방치 · base <b>${r.base}</b> → 현재 <b>${r.mastery}</b> (−${r.base-r.mastery})`));
+      n.append(el('div','d', `마지막 시도 <b>${r.days_since}일</b> 전, base <b>${r.base}</b>, 현재 <b>${r.mastery}</b>, 감쇠량 <b>${r.base-r.mastery}</b>`));
       box.append(n);
     });
   }
@@ -365,7 +365,7 @@
     const tb = el('tbody');
     list.forEach(e=>{
       const tr = el('tr');
-      tr.append(el('td',null,esc(e.cause)+(e.count>=3?' <span class="chip" style="color:var(--crit)">습관</span>':'')));
+      tr.append(el('td',null,esc(e.cause)+(e.count>=3?' <span class="chip" style="color:var(--crit)">3회 이상</span>':'')));
       const bar = el('div','bar'); bar.dataset.tip = `${e.cause} — ${e.count}회`;
       const n = el('i','now'); n.style.width = (e.count/max*100)+'%'; bar.append(n);
       const td = el('td'); td.append(bar); tr.append(td);
@@ -393,7 +393,7 @@
       const w = Math.abs(diff)/max*50;
       if(diff<=0){ mk.style.right='50%'; mk.style.width=Math.max(w,1.2)+'%'; mk.style.background='var(--cool)'; }
       else { mk.style.left='50%'; mk.style.width=Math.max(w,1.2)+'%'; mk.style.background='var(--warm)'; }
-      mk.dataset.tip = `${r.title} — ${r.minutes}분 / 목표 ${r.target}분 · ${OUT[r.outcome]||r.outcome}`;
+      mk.dataset.tip = `${r.title}: ${r.minutes}분, 목표 ${r.target}분, ${OUT[r.outcome]||r.outcome}`;
       plot.append(mk); g.append(plot);
       g.append(el('div','val', (diff>0?'+':'')+diff+'분'));
     });
@@ -440,8 +440,8 @@
         const key = day.toISOString().slice(0,10);
         const h = byDate[key], cell = el('i');
         if(h){ cell.style.background = HM[OUT_RANK[h.outcome]??2];
-               cell.dataset.tip = `${key} · ${OUT[h.outcome]||h.outcome}${h.count>1?` (${h.count}건)`:''}`; }
-        else { cell.dataset.tip = key + ' · 기록 없음'; }
+               cell.dataset.tip = `${key} ${OUT[h.outcome]||h.outcome}${h.count>1?` (${h.count}건)`:''}`; }
+        else { cell.dataset.tip = key + ' 기록 없음'; }
         col.append(cell);
       }
       box.append(col);
@@ -450,7 +450,7 @@
     lg.append(el('span',null,'미해결'));
     HM.forEach(c=>{ const i=el('i','sw'); i.style.background=c; i.style.width='12px'; i.style.height='12px'; lg.append(i); });
     lg.append(el('span',null,'시간내 정답'));
-    lg.append(el('span',null,`<span style="margin-left:10px">최근 ${WEEKS}주 · 세로 월~일</span>`));
+    lg.append(el('span',null,`<span style="margin-left:10px">최근 ${WEEKS}주, 세로는 월요일부터 일요일</span>`));
   }
 
   /* ---- 최근 ---- */
@@ -496,10 +496,10 @@
     const note = $('#note');
     if(which==='demo'){
       note.hidden = false;
-      note.innerHTML = '<b>예시 데이터</b> — 내 기록이 아니다. 19일치 가상 기록을 같은 계산식에 넣어 돌린 화면이다. 실제 기록으로 돌아가려면 위에서 “내 기록”을 누른다.';
+      note.innerHTML = '<b>예시 데이터</b> 19일치 가상 기록을 같은 계산식에 넣어 생성한 화면이다. 실제 기록을 보려면 위에서 “내 기록”을 누른다.';
     } else if(locked){
       note.hidden = false;
-      note.innerHTML = `<b>진단 단계</b> — 기록 ${(d.totals||{}).records||0}건. 12유형을 한 번씩 풀어 현재 상태를 측정하는 중이고, 차트는 ${MIN_RECORDS}건부터 의미가 생긴다. 아래 “역량” 표의 번호가 진단 순서다.`;
+      note.innerHTML = `<b>진단 단계</b> 기록 ${(d.totals||{}).records||0}건. 12유형을 한 번씩 풀어 현재 상태를 측정하는 중이다. 차트는 기록 ${MIN_RECORDS}건부터 표시한다. 아래 “역량” 표의 번호가 진단 순서다.`;
     } else note.hidden = true;
     today(d); kpis(d); types(d); rust(d);
     errors(d); timeChart(d, locked); queue(d); heatmap(d); recent(d);
