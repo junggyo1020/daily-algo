@@ -17,8 +17,11 @@ OUT = os.path.join(ROOT, "dashboard", "index.html")
 
 
 def main():
-    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "algo.py"), "export"],
-                   check=True, capture_output=True)
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "algo.py"), "export"],
+                       capture_output=True, text=True)
+    if r.returncode:
+        # 삼키면 "대시보드가 왜 안 바뀌지"로 끝난다. 원인을 그대로 보여준다.
+        sys.exit("export 실패:\n" + (r.stderr or r.stdout).strip())
     with open(TPL, encoding="utf-8") as f:
         html = f.read()
     with open(DATA, encoding="utf-8") as f:

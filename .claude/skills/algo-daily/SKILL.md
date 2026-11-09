@@ -56,13 +56,16 @@ cd ~/willy/GitHub/daily-algo && python3 scripts/algo.py today
 복습일에는 개념 설명 대신 **지난 오답 원인 한 줄만** 상기시킨다
 (예: "지난번엔 방문처리 시점 때문에 틀렸다"). 풀이 방법은 다시 말하지 않는다.
 
+`algo.py today`가 출력하는 **이전 풀이 경로(`solution_path`)를 지금 열지 않는다.** 읽어서
+"아 맞다"가 되는 건 복습이 아니다. 그 파일은 7단계 피드백에서 새 풀이와 비교할 때만 연다.
+
 ## 4단계 — 문제 제시와 작업 파일 생성
 
 문제는 `algo.py today`가 지정한 것, 주간 계획에 있는 것, 없으면 `algo-problem-scout` 에이전트를
 `model: "opus"`로 호출해 확보한다. **문제 번호를 기억으로 쓰지 않는다** — 실재 확인 없이 쓴 링크는
 반드시 깨진다.
 
-`assets/Solution_template.java`를 복사해 작업 파일을 만든다:
+`.claude/skills/algo-daily/assets/Solution_template.java`를 복사해 작업 파일을 만든다:
 ```
 src/main/java/daily/D{YYYYMMDD}_{문제id}_{짧은제목}.java
 ```
@@ -113,11 +116,15 @@ cd ~/willy/GitHub/daily-algo && java src/main/java/daily/D...java
 ```bash
 python3 scripts/algo.py log \
   --platform programmers --id 42586 --title "기능개발" --level 2 \
-  --types t04 --minutes 23 --target 22 --outcome solved_over_time \
-  --attempts 2 --errors 경계조건 --felt 3 --mode new \
+  --types t04 --minutes 23 --outcome solved_over_time \
+  --attempts 2 --errors 경계조건 --mode new \
   --path src/main/java/daily/D20261109_42586_기능개발.java \
   --url "https://..." --note "덱 회전에서 인덱스 꼬임"
 ```
+
+`--target`을 생략하면 유형×난이도 기본 목표시간이 자동으로 들어간다. 실제로 다른 목표를 걸고
+풀었을 때만 명시한다. `--date`도 생략하면 오늘이다 — **형식이 틀리면 기록을 거부**하므로
+날짜를 손으로 쓸 일이 있으면 `YYYY-MM-DD`를 지킨다.
 
 `outcome` 판정 기준 — 느슨하게 주지 않는다. 숙련도 점수 전체가 여기서 나온다.
 

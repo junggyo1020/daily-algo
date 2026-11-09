@@ -6,9 +6,9 @@ log.jsonl 하나를 단일 진실 원천으로 삼고, 숙련도·복습큐·스
 
 사용법:
   algo.py log   --platform P --id ID --title T --level N --types t04[,t06] \
-                --minutes M --outcome solved_in_time --attempts N \
-                [--errors 경계조건,구현실수] [--felt 1-5] [--note "..."] \
-                [--path src/...] [--mode new|review] [--review-of programmers:42586]
+                --minutes M --outcome solved_in_time [--attempts N] \
+                [--errors 경계조건,구현실수] [--note "..."] [--target 분] \
+                [--path src/...] [--mode new|review] [--date YYYY-MM-DD]
   algo.py today     오늘 무엇을 풀어야 하는지 추천
   algo.py stats     터미널 요약
   algo.py export    dashboard/data.json 생성
@@ -54,6 +54,17 @@ def load_types():
         return json.load(f)
 
 
+def d(s):
+    return datetime.strptime(s, "%Y-%m-%d").date()
+
+
+def parse_date(s, where="--date"):
+    try:
+        return d(s)
+    except ValueError:
+        sys.exit(f"{where} 는 YYYY-MM-DD 형식이어야 한다: {s!r}")
+
+
 def load_log():
     if not os.path.exists(LOG):
         return []
@@ -64,15 +75,31 @@ def load_log():
             if not line:
                 continue
             try:
-                out.append(json.loads(line))
+                r = json.loads(line)
             except json.JSONDecodeError as e:
                 sys.exit(f"log.jsonl {i}번째 줄이 깨졌다: {e}")
+            # 여기서 막지 않으면 깨진 한 줄이 이후 모든 명령을 크래시시킨다
+            missing = [k for k in ("date", "key", "types", "outcome", "mode") if k not in r]
+            if missing:
+                sys.exit(f"log.jsonl {i}번째 줄에 필수 키가 없다: {missing}")
+            parse_date(r["date"], f"log.jsonl {i}번째 줄의 date")
+            if r["outcome"] not in OUTCOME_SCORE:
+                sys.exit(f"log.jsonl {i}번째 줄의 outcome이 알 수 없는 값이다: {r['outcome']}")
+            out.append(r)
     out.sort(key=lambda r: r["date"])
     return out
 
 
-def d(s):
-    return datetime.strptime(s, "%Y-%m-%d").date()
+def type_target(cfg, type_id, level):
+    """유형×난이도 목표시간. types.json에 없는 난이도(Lv.4·5)는 가장 높은 단계로 올려 쓴다."""
+    t = next((x for x in cfg["types"] if x["id"] == type_id), None)
+    if not t:
+        return 0
+    tm = t["target_minutes"]
+    key = str(level)
+    if key not in tm:
+        key = max(tm, key=lambda k: int(k))
+    return tm[key]
 
 
 # --------------------------------------------------------------------------- log
@@ -94,30 +121,31 @@ def cmd_log(args):
     if args.outcome != "solved_in_time" and not errs:
         sys.exit("정답(제한시간내)이 아니면 --errors 로 오답원인을 최소 1개 분류해야 한다")
 
+    rec_date = parse_date(args.date).isoformat() if args.date else today().isoformat()
+    target = args.target or type_target(cfg, tids[0], args.level)
+
     rec = {
-        "date": args.date or today().isoformat(),
+        "date": rec_date,
         "key": f"{args.platform}:{args.id}",
-        "platform": args.platform,
-        "problem_id": args.id,
         "title": args.title,
         "level": args.level,
         "url": args.url or "",
         "types": tids,
         "minutes": args.minutes,
-        "target_minutes": args.target or 0,
+        "target_minutes": target,
         "outcome": args.outcome,
         "attempts": args.attempts,
         "errors": errs,
-        "difficulty_felt": args.felt,
         "note": args.note or "",
         "solution_path": args.path or "",
         "mode": args.mode,
-        "review_of": args.review_of or "",
     }
     os.makedirs(os.path.dirname(LOG), exist_ok=True)
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    print(f"기록 완료: {rec['date']} {rec['title']} [{', '.join(valid_types[t] for t in tids)}] {rec['outcome']}")
+    print(f"기록 완료: {rec['date']} {rec['title']} "
+          f"[{', '.join(valid_types[t] for t in tids)}] {rec['outcome']} "
+          f"({rec['minutes']}분 / 목표 {target}분)")
 
 
 # ---------------------------------------------------------------------- 파생 지표
@@ -143,6 +171,7 @@ def mastery_table(cfg, log, ref=None):
                 "samples": 0, "last_seen": None, "days_since": None,
                 "status": "미진단", "avg_minutes": None,
                 "target_minutes": t["target_minutes"].get("2"),
+                "targets": t["target_minutes"],
                 "outcomes": {}, "concepts": t["concepts"],
             })
             continue
@@ -165,13 +194,17 @@ def mastery_table(cfg, log, ref=None):
         else:
             status = "취약"
         mins = [r["minutes"] for r in recs[-3:] if r.get("minutes")]
+        # 목표시간은 실제로 푼 문제들의 목표를 평균낸다. 고정 Lv.2 기준으로 비교하면
+        # Lv.3 문제를 푼 유형이 늘 "느린" 것처럼 보인다.
+        tgts = [r["target_minutes"] for r in recs[-3:] if r.get("target_minutes")]
         rows.append({
             "id": t["id"], "name": t["name"], "mastery": mastery,
             "base": round(base * 100), "samples": len(recs),
             "last_seen": recs[-1]["date"], "days_since": days_since,
             "status": status,
             "avg_minutes": round(sum(mins) / len(mins), 1) if mins else None,
-            "target_minutes": t["target_minutes"].get("2"),
+            "target_minutes": round(sum(tgts) / len(tgts)) if tgts else t["target_minutes"].get("2"),
+            "targets": t["target_minutes"],
             "outcomes": dict(Counter(r["outcome"] for r in recs)),
             "concepts": t["concepts"],
         })
@@ -197,8 +230,8 @@ def review_queue(log, ref=None):
             clean = clean + 1 if r["outcome"] == "solved_in_time" else 0
         last = recs[-1]
         if last["outcome"] == "solved_in_time":
-            if clean >= 2:
-                continue  # 졸업 — 더 복습하지 않는다
+            if clean >= 3:
+                continue  # 졸업 — 21일·60일 확인을 모두 통과했다
             interval = REVIEW_INTERVAL["solved_in_time"][min(clean - 1, 1)]
         else:
             interval = REVIEW_INTERVAL[last["outcome"]]
@@ -208,6 +241,8 @@ def review_queue(log, ref=None):
             "types": last["types"], "url": last.get("url", ""),
             "last_date": last["date"], "last_outcome": last["outcome"],
             "errors": last.get("errors", []), "interval": interval,
+            "solution_path": last.get("solution_path", ""),
+            "platform": key.split(":", 1)[0],
             "next_review": nxt.isoformat(), "days_until": (nxt - ref).days,
             "total_attempts": len(recs),
         })
@@ -319,6 +354,8 @@ def cmd_today(args):
         print(f"[문제] {t['title']} (lv.{t['level']}, {', '.join(names[i] for i in t['types'])})")
         print(f"       지난 시도 {t['last_date']} / {t['last_outcome']} / 원인: {', '.join(t['errors']) or '-'}")
         print(f"       {t['url']}")
+        if t.get("solution_path"):
+            print(f"       이전 풀이 {t['solution_path']}  ← 지금 열지 말 것. 피드백 단계에서 비교용으로만 연다")
     else:
         t = rec["type"]
         tgt = next(x for x in cfg["types"] if x["id"] == t["id"])
@@ -404,7 +441,8 @@ def cmd_export(args):
                     "types": r["types"], "minutes": r["minutes"],
                     "target": r["target_minutes"], "outcome": r["outcome"],
                     "errors": r.get("errors", []), "mode": r["mode"],
-                    "url": r.get("url", "")} for r in reversed(log[-15:])],
+                    "url": r.get("url", ""), "path": r.get("solution_path", "")}
+                   for r in reversed(log[-15:])],
         "recommendation": {
             "mode": rec["mode"],
             "reason": rec["reason"],
@@ -436,14 +474,13 @@ def main():
                     help="solved_in_time|solved_over_time|solved_with_hint|failed")
     lg.add_argument("--attempts", type=int, default=1)
     lg.add_argument("--errors", default="")
-    lg.add_argument("--felt", type=int, default=3, help="체감 난이도 1-5")
     lg.add_argument("--note", default="")
     lg.add_argument("--path", default="")
     lg.add_argument("--url", default="")
-    lg.add_argument("--target", type=int, default=0)
+    lg.add_argument("--target", type=int, default=0,
+                    help="미지정 시 유형×난이도 기본 목표시간이 들어간다")
     lg.add_argument("--mode", default="new", choices=["new", "review"])
-    lg.add_argument("--review-of", dest="review_of", default="")
-    lg.add_argument("--date", default="")
+    lg.add_argument("--date", default="", help="YYYY-MM-DD, 미지정 시 오늘")
     lg.set_defaults(func=cmd_log)
 
     sub.add_parser("today", help="오늘 추천").set_defaults(func=cmd_today)

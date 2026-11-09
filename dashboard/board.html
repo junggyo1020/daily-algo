@@ -6,7 +6,7 @@
     --plane:#f9f9f7; --surface:#fcfcfb; --raised:#ffffff;
     --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
     --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
-    --accent:#2a78d6; --track:#86b6ef; --cool:#2a78d6; --warm:#e34948; --mid:#f0efec;
+    --accent:#2a78d6; --track:#86b6ef; --cool:#2a78d6; --warm:#e34948;
     --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
     --h1:#184f95; --h2:#2a78d6; --h3:#5598e7; --h4:#86b6ef;
     --sans:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Segoe UI",sans-serif;
@@ -16,14 +16,14 @@
     --plane:#0d0d0d; --surface:#1a1a19; --raised:#222221;
     --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
-    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767; --mid:#383835;
+    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767;
     --h1:#9ec5f4; --h2:#3987e5; --h3:#256abf; --h4:#184f95;
   }}
   :root[data-theme="dark"]{
     --plane:#0d0d0d; --surface:#1a1a19; --raised:#222221;
     --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
-    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767; --mid:#383835;
+    --accent:#3987e5; --track:#256abf; --cool:#3987e5; --warm:#e66767;
     --h1:#9ec5f4; --h2:#3987e5; --h3:#256abf; --h4:#184f95;
   }
   *{box-sizing:border-box}
@@ -140,6 +140,7 @@
        background:var(--ink);color:var(--plane);font-size:11.5px;padding:6px 9px;border-radius:6px;
        max-width:260px;line-height:1.45}
   .tip.on{opacity:1}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   @media (max-width:680px){
     .kpis{grid-template-columns:1fr 1fr}
@@ -203,7 +204,7 @@
 
   <section>
     <p class="eyebrow">복습 큐</p>
-    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1·3·7·21·60일 뒤 같은 문제를 다시 만난다. 2회 연속 시간내 정답이면 졸업한다.</p>
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">결과에 따라 1·3·7·21·60일 뒤 같은 문제를 다시 만난다. 21일·60일 확인을 모두 통과하면(연속 3회 시간내 정답) 졸업한다.</p>
     <div style="overflow-x:auto"><table class="tbl" id="queue"></table></div>
   </section>
 
@@ -270,7 +271,8 @@
       box.append(el('p','why', esc(r.reason)));
       const m = el('div','meta');
       m.append(el('div',null,`난이도<strong class="num">Lv.${esc(r.suggested_level)}</strong>`));
-      m.append(el('div',null,`목표시간<strong class="num">${esc(row.target_minutes||'—')}분</strong>`));
+      const tgt = (row.targets||{})[String(r.suggested_level)] || row.target_minutes;
+      m.append(el('div',null,`목표시간<strong class="num">${esc(tgt||'—')}분</strong>`));
       m.append(el('div',null,`현재 숙련도<strong class="num">${esc(row.mastery??0)}</strong>`));
       m.append(el('div',null,`표본<strong class="num">${esc(row.samples??0)}</strong>`));
       box.append(m);
@@ -304,7 +306,7 @@
   }
 
   /* ---- 역량 ---- */
-  function types(d, locked){
+  function types(d){
     const rows = (d.types||[]).slice();
     const diag = d.phase === '진단';
     const order = {}; (d.types||[]).forEach((r,i)=>order[r.id]=i+1);
@@ -353,7 +355,7 @@
   }
 
   /* ---- 오답 원인 ---- */
-  function errors(d, locked){
+  function errors(d){
     const box = $('#errors'); box.innerHTML='';
     const list = (d.errors||[]).filter(e=>e.count>0).sort((a,b)=>b.count-a.count);
     if(!list.length){ box.append(el('div','locked','아직 분류된 오답 원인이 없다.')); return; }
@@ -499,8 +501,8 @@
       note.hidden = false;
       note.innerHTML = `<b>진단 단계</b> — 기록 ${(d.totals||{}).records||0}건. 12유형을 한 번씩 풀어 현재 상태를 측정하는 중이고, 차트는 ${MIN_RECORDS}건부터 의미가 생긴다. 아래 “역량” 표의 번호가 진단 순서다.`;
     } else note.hidden = true;
-    today(d); kpis(d); types(d, locked); rust(d);
-    errors(d, locked); timeChart(d, locked); queue(d); heatmap(d); recent(d);
+    today(d); kpis(d); types(d); rust(d);
+    errors(d); timeChart(d, locked); queue(d); heatmap(d); recent(d);
     $('#b-real').setAttribute('aria-pressed', String(which!=='demo'));
     $('#b-demo').setAttribute('aria-pressed', String(which==='demo'));
   }

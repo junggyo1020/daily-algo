@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T21:53:44",
+  "generated_at": "2026-11-09T22:07:47",
   "phase": "보강",
   "weekly_goal": 5,
   "totals": {
@@ -28,7 +28,12 @@
       "days_since": 26,
       "status": "양호",
       "avg_minutes": 14.0,
-      "target_minutes": 25,
+      "target_minutes": 15,
+      "targets": {
+        "1": 15,
+        "2": 25,
+        "3": 35
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -44,6 +49,11 @@
       "status": "양호",
       "avg_minutes": 25.0,
       "target_minutes": 25,
+      "targets": {
+        "1": 15,
+        "2": 25,
+        "3": 35
+      },
       "outcomes": {
         "solved_over_time": 1,
         "solved_in_time": 1
@@ -60,6 +70,11 @@
       "status": "양호",
       "avg_minutes": 18.0,
       "target_minutes": 22,
+      "targets": {
+        "1": 15,
+        "2": 22,
+        "3": 32
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -75,6 +90,11 @@
       "status": "양호",
       "avg_minutes": 23.5,
       "target_minutes": 22,
+      "targets": {
+        "1": 15,
+        "2": 22,
+        "3": 32
+      },
       "outcomes": {
         "solved_over_time": 1,
         "solved_in_time": 1
@@ -91,6 +111,11 @@
       "status": "견고",
       "avg_minutes": 21.0,
       "target_minutes": 25,
+      "targets": {
+        "1": 18,
+        "2": 25,
+        "3": 35
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -105,7 +130,12 @@
       "days_since": 12,
       "status": "양호",
       "avg_minutes": 36.5,
-      "target_minutes": 25,
+      "target_minutes": 35,
+      "targets": {
+        "1": 18,
+        "2": 25,
+        "3": 35
+      },
       "outcomes": {
         "solved_with_hint": 1,
         "solved_in_time": 1
@@ -121,7 +151,12 @@
       "days_since": 15,
       "status": "견고",
       "avg_minutes": 38.0,
-      "target_minutes": 28,
+      "target_minutes": 38,
+      "targets": {
+        "1": 18,
+        "2": 28,
+        "3": 38
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -137,6 +172,11 @@
       "status": "견고",
       "avg_minutes": 26.0,
       "target_minutes": 30,
+      "targets": {
+        "1": 20,
+        "2": 30,
+        "3": 40
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -152,6 +192,11 @@
       "status": "견고",
       "avg_minutes": 28.3,
       "target_minutes": 30,
+      "targets": {
+        "1": 20,
+        "2": 30,
+        "3": 40
+      },
       "outcomes": {
         "solved_in_time": 2,
         "solved_over_time": 1
@@ -167,7 +212,12 @@
       "days_since": 2,
       "status": "취약",
       "avg_minutes": 47.5,
-      "target_minutes": 35,
+      "target_minutes": 45,
+      "targets": {
+        "1": 25,
+        "2": 35,
+        "3": 45
+      },
       "outcomes": {
         "failed": 1,
         "solved_with_hint": 1
@@ -183,7 +233,12 @@
       "days_since": 6,
       "status": "불안",
       "avg_minutes": 43.0,
-      "target_minutes": 35,
+      "target_minutes": 45,
+      "targets": {
+        "1": 25,
+        "2": 35,
+        "3": 45
+      },
       "outcomes": {
         "solved_with_hint": 1,
         "solved_over_time": 1
@@ -200,6 +255,11 @@
       "status": "견고",
       "avg_minutes": 22.0,
       "target_minutes": 28,
+      "targets": {
+        "1": 18,
+        "2": 28,
+        "3": 38
+      },
       "outcomes": {
         "solved_in_time": 1
       }
@@ -455,6 +515,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261014_120585.java",
+      "platform": "programmers",
       "next_review": "2026-11-04",
       "days_until": -5,
       "total_attempts": 1
@@ -471,6 +533,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261017_42578.java",
+      "platform": "programmers",
       "next_review": "2026-11-07",
       "days_until": -2,
       "total_attempts": 1
@@ -487,6 +551,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261019_60057.java",
+      "platform": "programmers",
       "next_review": "2026-11-09",
       "days_until": 0,
       "total_attempts": 2
@@ -505,6 +571,8 @@
         "구현실수"
       ],
       "interval": 7,
+      "solution_path": "src/main/java/daily/D20261103_43105.java",
+      "platform": "programmers",
       "next_review": "2026-11-10",
       "days_until": 1,
       "total_attempts": 2
@@ -523,6 +591,8 @@
         "자료구조선택"
       ],
       "interval": 3,
+      "solution_path": "src/main/java/daily/D20261107_12978.java",
+      "platform": "programmers",
       "next_review": "2026-11-10",
       "days_until": 1,
       "total_attempts": 2
@@ -539,6 +609,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261021_42626.java",
+      "platform": "programmers",
       "next_review": "2026-11-11",
       "days_until": 2,
       "total_attempts": 1
@@ -555,6 +627,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261024_42586.java",
+      "platform": "programmers",
       "next_review": "2026-11-14",
       "days_until": 5,
       "total_attempts": 2
@@ -571,6 +645,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261025_43238.java",
+      "platform": "programmers",
       "next_review": "2026-11-15",
       "days_until": 6,
       "total_attempts": 1
@@ -587,6 +663,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261026_87946.java",
+      "platform": "programmers",
       "next_review": "2026-11-16",
       "days_until": 7,
       "total_attempts": 1
@@ -605,6 +683,8 @@
         "API미숙"
       ],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261028_67258.java",
+      "platform": "programmers",
       "next_review": "2026-11-18",
       "days_until": 9,
       "total_attempts": 2
@@ -621,6 +701,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261029_43165.java",
+      "platform": "programmers",
       "next_review": "2026-11-19",
       "days_until": 10,
       "total_attempts": 1
@@ -637,6 +719,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261105_42883.java",
+      "platform": "programmers",
       "next_review": "2026-11-26",
       "days_until": 17,
       "total_attempts": 1
@@ -653,6 +737,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261108_1844.java",
+      "platform": "programmers",
       "next_review": "2026-11-29",
       "days_until": 20,
       "total_attempts": 2
@@ -863,7 +949,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844",
+      "path": "src/main/java/daily/D20261108_1844.java"
     },
     {
       "date": "2026-11-07",
@@ -879,7 +966,8 @@
         "자료구조선택"
       ],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978",
+      "path": "src/main/java/daily/D20261107_12978.java"
     },
     {
       "date": "2026-11-05",
@@ -893,7 +981,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42883"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42883",
+      "path": "src/main/java/daily/D20261105_42883.java"
     },
     {
       "date": "2026-11-04",
@@ -910,7 +999,8 @@
         "자료구조선택"
       ],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12978",
+      "path": "src/main/java/daily/D20261104_12978.java"
     },
     {
       "date": "2026-11-03",
@@ -926,7 +1016,8 @@
         "구현실수"
       ],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105",
+      "path": "src/main/java/daily/D20261103_43105.java"
     },
     {
       "date": "2026-11-01",
@@ -942,7 +1033,8 @@
         "경계조건"
       ],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/1844",
+      "path": "src/main/java/daily/D20261101_1844.java"
     },
     {
       "date": "2026-10-31",
@@ -959,7 +1051,8 @@
         "수학오버플로"
       ],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43105",
+      "path": "src/main/java/daily/D20261031_43105.java"
     },
     {
       "date": "2026-10-29",
@@ -973,7 +1066,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43165"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43165",
+      "path": "src/main/java/daily/D20261029_43165.java"
     },
     {
       "date": "2026-10-28",
@@ -989,7 +1083,8 @@
         "API미숙"
       ],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258",
+      "path": "src/main/java/daily/D20261028_67258.java"
     },
     {
       "date": "2026-10-26",
@@ -1003,7 +1098,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/87946"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/87946",
+      "path": "src/main/java/daily/D20261026_87946.java"
     },
     {
       "date": "2026-10-25",
@@ -1017,7 +1113,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43238"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/43238",
+      "path": "src/main/java/daily/D20261025_43238.java"
     },
     {
       "date": "2026-10-24",
@@ -1031,7 +1128,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42586"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42586",
+      "path": "src/main/java/daily/D20261024_42586.java"
     },
     {
       "date": "2026-10-22",
@@ -1047,7 +1145,8 @@
         "유형미인지"
       ],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/67258",
+      "path": "src/main/java/daily/D20261022_67258.java"
     },
     {
       "date": "2026-10-21",
@@ -1061,7 +1160,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "new",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42626"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/42626",
+      "path": "src/main/java/daily/D20261021_42626.java"
     },
     {
       "date": "2026-10-19",
@@ -1075,7 +1175,8 @@
       "outcome": "solved_in_time",
       "errors": [],
       "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057"
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
+      "path": "src/main/java/daily/D20261019_60057.java"
     }
   ],
   "recommendation": {
@@ -1096,6 +1197,8 @@
       "last_outcome": "solved_in_time",
       "errors": [],
       "interval": 21,
+      "solution_path": "src/main/java/daily/D20261014_120585.java",
+      "platform": "programmers",
       "next_review": "2026-11-04",
       "days_until": -5,
       "total_attempts": 1
