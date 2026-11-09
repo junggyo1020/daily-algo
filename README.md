@@ -59,7 +59,12 @@ python3 scripts/algo.py today     # 오늘 뭘 풀어야 하는지
 python3 scripts/algo.py stats      # 터미널 요약 (숙련도 표 + 오답원인 분포)
 python3 scripts/algo.py export     # dashboard/data.json 생성
 python3 scripts/algo.py log --help # 기록 옵션
+python3 scripts/verify.py          # 하네스 자체 검사 (문서↔코드 불일치 탐지)
 ```
+
+`verify.py`는 스킬·에이전트·엔진을 고친 뒤에 돌린다. 이 저장소에서 가장 위험한 고장은
+코드 버그가 아니라 **문서와 코드의 불일치**다 — 문서는 "60일 뒤 복습한다"고 하는데 코드가
+거기 도달하지 못하면, 일어나지 않는 일을 믿고 공부하게 된다. 그런 종류만 골라 검사한다.
 
 ## 구조
 
