@@ -156,11 +156,17 @@ python3 scripts/algo.py log \
 
 마지막으로 대시보드와 커밋:
 ```bash
-python3 scripts/algo.py export
-git add -A && git commit -q -m "$(date +%Y-%m-%d) 기능개발 (스택과 큐, solved_over_time)"
+python3 scripts/build_dashboard.py
+git add -A && git commit -q -m "[feat] $(date +%Y-%m-%d) 기능개발 (스택과 큐)"
 git push
 python3 scripts/algo.py stats
 ```
+
+**그리고 대시보드를 발행한다.** `build_dashboard.py`는 로컬 `dashboard/index.html`만 만든다.
+발행된 페이지는 데이터를 안에 박아둔 정적 페이지라, 다시 발행하지 않으면 사용자가 보는 화면은
+어제 상태로 남는다. `dashboard/artifact_url.txt`의 주소로 `Artifact` 도구를 호출해 **같은 URL을
+갱신**한다. 새 URL을 만들면 사용자가 북마크한 대시보드가 죽은 데이터를 가리킨다.
+발행까지 끝나야 그날 기록이 마감된 것이다.
 커밋 그래프 자체가 학습 로그다. 그래서 하루 1커밋을 지킨다.
 
 **커밋은 사용자 본인 명의다.** 저장소 로컬 git 신원이 이미 설정돼 있으니 `-c user.email=...`로
