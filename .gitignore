@@ -6,3 +6,6 @@ dashboard/index.html
 __pycache__/
 *.pyc
 _workspace/
+.gradle/
+build/
+out/

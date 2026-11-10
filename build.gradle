@@ -1,0 +1,11 @@
+// IntelliJ가 폴더를 열자마자 소스 루트와 JDK를 잡게 하려고 둔 파일이다.
+// 의존성은 없다. 풀이 파일은 Gradle 없이 `java <경로>` 로도 그대로 실행된다.
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
