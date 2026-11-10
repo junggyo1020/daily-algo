@@ -1,40 +1,42 @@
 {
-  "generated_at": "2026-11-10T20:19:54",
+  "generated_at": "2026-11-10T21:56:52",
   "phase": "진단",
   "weekly_goal": 5,
   "totals": {
-    "records": 0,
-    "problems": 0,
-    "days": 0,
+    "records": 1,
+    "problems": 1,
+    "days": 1,
     "solved_in_time": 0,
-    "types_touched": 0,
+    "types_touched": 1,
     "types_total": 12,
-    "avg_mastery": 0
+    "avg_mastery": 3
   },
   "streak": {
-    "day": 0,
+    "day": 1,
     "week": 0,
-    "this_week": 0,
+    "this_week": 1,
     "weekly_goal": 5
   },
   "types": [
     {
       "id": "t01",
       "name": "구현과 시뮬레이션",
-      "mastery": 0,
-      "base": 0,
-      "samples": 0,
-      "last_seen": null,
-      "days_since": null,
-      "status": "기록 없음",
-      "avg_minutes": null,
+      "mastery": 40,
+      "base": 40,
+      "samples": 1,
+      "last_seen": "2026-11-10",
+      "days_since": 0,
+      "status": "35-59",
+      "avg_minutes": 76.0,
       "target_minutes": 25,
       "targets": {
         "1": 15,
         "2": 25,
         "3": 35
       },
-      "outcomes": {}
+      "outcomes": {
+        "solved_with_hint": 1
+      }
     },
     {
       "id": "t02",
@@ -314,7 +316,13 @@
     ]
   },
   "rust_alerts": [],
-  "heatmap": [],
+  "heatmap": [
+    {
+      "date": "2026-11-10",
+      "count": 1,
+      "outcome": "solved_with_hint"
+    }
+  ],
   "errors": [
     {
       "cause": "유형미인지",
@@ -339,7 +347,7 @@
     {
       "cause": "구현실수",
       "desc": "인덱스, off-by-one, 조건문 뒤집힘 등 코딩 실수",
-      "count": 0
+      "count": 1
     },
     {
       "cause": "문제오독",
@@ -349,7 +357,7 @@
     {
       "cause": "API미숙",
       "desc": "Java 표준 API 사용법이 막힘 (Deque, TreeMap, Comparator 등)",
-      "count": 0
+      "count": 1
     },
     {
       "cause": "수학오버플로",
@@ -357,15 +365,67 @@
       "count": 0
     }
   ],
-  "review_queue": [],
-  "time_trend": [],
-  "recent": [],
+  "review_queue": [
+    {
+      "key": "programmers:92341",
+      "title": "주차 요금 계산",
+      "level": 2,
+      "types": [
+        "t01"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/92341",
+      "last_date": "2026-11-10",
+      "last_outcome": "solved_with_hint",
+      "errors": [
+        "구현실수",
+        "API미숙"
+      ],
+      "interval": 3,
+      "solution_path": "src/main/java/daily/d20261110/D20261110_92341_ParkingFee.java",
+      "platform": "programmers",
+      "next_review": "2026-11-13",
+      "days_until": 3,
+      "total_attempts": 1
+    }
+  ],
+  "time_trend": [
+    {
+      "date": "2026-11-10",
+      "minutes": 76,
+      "target": 25,
+      "outcome": "solved_with_hint",
+      "title": "주차 요금 계산",
+      "types": [
+        "t01"
+      ]
+    }
+  ],
+  "recent": [
+    {
+      "date": "2026-11-10",
+      "title": "주차 요금 계산",
+      "level": 2,
+      "types": [
+        "t01"
+      ],
+      "minutes": 76,
+      "target": 25,
+      "outcome": "solved_with_hint",
+      "errors": [
+        "구현실수",
+        "API미숙"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/92341",
+      "path": "src/main/java/daily/d20261110/D20261110_92341_ParkingFee.java"
+    }
+  ],
   "recommendation": {
     "mode": "new",
-    "reason": "진단 단계다. 아직 풀지 않은 유형이 12개 남았고, 순서상 구현과 시뮬레이션 차례다.",
+    "reason": "진단 단계다. 아직 풀지 않은 유형이 11개 남았고, 순서상 문자열 차례다.",
     "suggested_level": 2,
-    "type": "구현과 시뮬레이션",
-    "type_id": "t01",
+    "type": "문자열",
+    "type_id": "t02",
     "target": null
   },
   "type_names": {
