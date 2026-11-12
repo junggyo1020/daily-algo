@@ -120,7 +120,32 @@ def main():
     for ref in sorted(set(re.findall(r"algo-[a-z-]+", docs))):
         chk(ref in names, f"참조 '{ref}' 가 실존하는 에이전트/스킬")
 
-    print("[6] 커밋 메시지")
+    print("[6] 추천 우선순위 — 문서가 약속한 동작이 실제로 나오는가")
+    import importlib.util
+    from datetime import date, timedelta
+    spec = importlib.util.spec_from_file_location("algo", os.path.join(ROOT, "scripts", "algo.py"))
+    algo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(algo)
+    cfg = algo.load_types()
+    y = date(2026, 6, 1)
+
+    def rec(outcome, days_ago, ref):
+        return [{"date": (ref - timedelta(days=days_ago)).isoformat(), "key": "p:1",
+                 "title": "T", "level": 2, "types": ["t01"], "minutes": 30,
+                 "target_minutes": 25, "outcome": outcome, "errors": ["구현실수"],
+                 "mode": "new", "url": "", "solution_path": "", "attempts": 1, "note": ""}]
+
+    # 못 푼 문제는 다음 날 1순위다. 진단 단계라고 해서 새 유형에 밀리면 안 된다.
+    r = algo.recommend(cfg, rec("failed", 1, y), y)
+    chk(r["mode"] == "review", f"어제 미해결 문제가 다음 날 1순위 (실제: {r['mode']})")
+    # 깔끔하게 푼 문제는 21일 전까지 돌아오지 않는다.
+    r = algo.recommend(cfg, rec("solved_in_time", 1, y), y)
+    chk(r["mode"] == "new", f"어제 시간내 정답은 다음 날 복습 대상 아님 (실제: {r['mode']})")
+    # 진단 단계에서는 커리큘럼 순서대로 안 푼 유형을 준다.
+    chk(r["mode"] == "new" and r["type"]["id"] == "t02",
+        f"진단 단계는 안 푼 유형 순서대로 (실제: {r.get('type', {}).get('id')})")
+
+    print("[7] 커밋 메시지")
     log = subprocess.run(["git", "log", "--format=%s"], capture_output=True, text=True).stdout
     subjects = [l for l in log.splitlines() if l.strip()]
     if subjects:
@@ -133,7 +158,7 @@ def main():
     else:
         chk(True, "커밋 없음 (검사 생략)")
 
-    print("[7] 엔진과 빌드 실행")
+    print("[8] 엔진과 빌드 실행")
     for cmd in (["scripts/algo.py", "today"], ["scripts/algo.py", "stats"],
                 ["scripts/algo.py", "export"], ["scripts/build_dashboard.py"]):
         r = subprocess.run([sys.executable] + cmd, capture_output=True, text=True)

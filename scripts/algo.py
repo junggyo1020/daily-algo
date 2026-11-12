@@ -319,6 +319,15 @@ def recommend(cfg, log, ref=None):
                 "reason": f"복습이 {-pick['days_until']}일 밀렸다. 2일 이상 밀린 복습은 새 문제보다 먼저 푼다.",
                 "suggested_level": pick["level"], "rows": rows, "queue": q}
 
+    # 못 푼 문제는 다음 날 바로 돌려준다. 접근을 고민한 기억이 아직 살아 있을 때
+    # 다시 만나는 것이 가장 효율이 높고, 진단 단계라고 해서 미루면 그 기억이 사라진다.
+    failed_due = [x for x in due if x["last_outcome"] == "failed"]
+    if failed_due:
+        pick = failed_due[0]
+        return {"phase": phase, "mode": "review", "target": pick,
+                "reason": "어제 못 푼 문제다. 접근을 고민한 기억이 남아 있을 때 다시 푸는 것이 가장 효율이 높다.",
+                "suggested_level": pick["level"], "rows": rows, "queue": q}
+
     if phase == "진단":
         untouched = [i for i in order if by_id[i]["samples"] == 0]
         if untouched:

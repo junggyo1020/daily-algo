@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T23:59:57",
+  "generated_at": "2026-11-13T00:01:19",
   "phase": "진단",
   "weekly_goal": 5,
   "totals": {
@@ -25,7 +25,7 @@
       "base": 40,
       "samples": 1,
       "last_seen": "2026-11-10",
-      "days_since": 2,
+      "days_since": 3,
       "status": "35-59",
       "avg_minutes": 76.0,
       "target_minutes": 25,
@@ -45,7 +45,7 @@
       "base": 10,
       "samples": 1,
       "last_seen": "2026-11-12",
-      "days_since": 0,
+      "days_since": 1,
       "status": "35 미만",
       "avg_minutes": 41.0,
       "target_minutes": 25,
@@ -391,7 +391,7 @@
       "solution_path": "src/main/java/daily/d20261110/D20261110_92341_ParkingFee.java",
       "platform": "programmers",
       "next_review": "2026-11-13",
-      "days_until": 1,
+      "days_until": 0,
       "total_attempts": 1
     },
     {
@@ -412,7 +412,7 @@
       "solution_path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java",
       "platform": "programmers",
       "next_review": "2026-11-13",
-      "days_until": 1,
+      "days_until": 0,
       "total_attempts": 1
     }
   ],
@@ -477,12 +477,32 @@
     }
   ],
   "recommendation": {
-    "mode": "new",
-    "reason": "진단 단계다. 아직 풀지 않은 유형이 10개 남았고, 순서상 정렬과 해시 차례다.",
+    "mode": "review",
+    "reason": "어제 못 푼 문제다. 접근을 고민한 기억이 남아 있을 때 다시 푸는 것이 가장 효율이 높다.",
     "suggested_level": 2,
-    "type": "정렬과 해시",
-    "type_id": "t03",
-    "target": null
+    "type": null,
+    "type_id": null,
+    "target": {
+      "key": "programmers:60057",
+      "title": "문자열 압축",
+      "level": 2,
+      "types": [
+        "t02"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
+      "last_date": "2026-11-12",
+      "last_outcome": "failed",
+      "errors": [
+        "구현실수",
+        "경계조건"
+      ],
+      "interval": 1,
+      "solution_path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java",
+      "platform": "programmers",
+      "next_review": "2026-11-13",
+      "days_until": 0,
+      "total_attempts": 1
+    }
   },
   "type_names": {
     "t01": "구현과 시뮬레이션",

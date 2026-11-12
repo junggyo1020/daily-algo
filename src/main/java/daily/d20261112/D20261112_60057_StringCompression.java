@@ -72,6 +72,7 @@ class Solution {
 				} else {
 					if(cnt > 1) result.append(cnt);
 					result.append(sb);
+					prev = sb.toString();
 					cnt = 1;
 				}
 				lastIdx = i+k;
@@ -88,6 +89,7 @@ class Solution {
 			} else {
 				if(cnt > 1) result.append(cnt);
 				result.append(sb);
+				prev = sb.toString();
 				cnt = 1;
 			}
 
