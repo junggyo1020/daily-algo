@@ -28,9 +28,13 @@ public class D20261112_60057_StringCompression {
         fail += check("예제4", 14, s.solution("abcabcabcabcdededededede")) ? 0 : 1;
         fail += check("예제5", 17, s.solution("xababcdcdababcdcd")) ? 0 : 1;
 
-        // 스스로 만든 반례 — 길이 1, 전부 같은 문자, 압축이 전혀 안 되는 경우 등
-        // fail += check("edge1 ...", ?, s.solution("?")) ? 0 : 1;
-        // fail += check("edge2 ...", ?, s.solution("?")) ? 0 : 1;
+        // 반례
+        // 길이 1: k 루프가 한 번만 돌고, 마지막 묶음 처리가 바로 걸린다
+        fail += check("edge1 길이 1",      1, s.solution("a")) ? 0 : 1;
+        // 전부 같은 문자: k=1 로 "8a" 가 되어 압축이 최대로 된다
+        fail += check("edge2 동일 문자",    2, s.solution("aaaaaaaa")) ? 0 : 1;
+        // 압축 불가: 어떤 k 로 잘라도 줄지 않아 원본 길이가 답이다
+        fail += check("edge3 압축 불가",    6, s.solution("abcdef")) ? 0 : 1;
 
         System.out.println(fail == 0 ? "ALL PASS" : fail + " FAIL");
     }
@@ -86,6 +90,7 @@ class Solution {
 
 			if(prev.equals(sb.toString())) {
 				cnt++;
+				result.append(cnt);
 			} else {
 				if(cnt > 1) result.append(cnt);
 				result.append(sb);

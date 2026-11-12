@@ -8,7 +8,7 @@ package daily.d{{YYYYMMDD}};
  *
  * 실행: java {{FILEPATH}}
  * 성공 기준: 콘솔에 "ALL PASS"가 찍힐 때까지가 1차 완료다.
- *            제출 전 반드시 edge1, edge2에 스스로 만든 반례를 채운다.
+ *            예제 아래의 반례까지 통과해야 한다.
  *            제공된 예제만 통과하고 제출해서 틀리는 게 가장 흔한 실점이다.
  *
  * 제출: 아래 "붙여넣기 시작" 줄부터 파일 끝까지 복사해 프로그래머스 에디터에 넣는다.
@@ -25,11 +25,9 @@ public class {{CLASS}} {
         // 문제에 주어진 예제
         fail += check("예제1", {{EXPECTED_1}}, s.solution({{ARGS_1}})) ? 0 : 1;
 
-        // 스스로 만든 반례 — 빈 입력, 원소 1개, 최댓값, 동일값, 경계
-        // 반례는 문제의 제한사항 안에서 만든다. 허용되지 않는 입력으로 테스트하면
-        // 있지도 않은 버그를 쫓게 된다.
-        // fail += check("edge1 ...", ?, s.solution(?)) ? 0 : 1;
-        // fail += check("edge2 ...", ?, s.solution(?)) ? 0 : 1;
+        // 반례 (왜 이 입력을 고의로 넣는지 한 줄씩 적는다)
+        fail += check("edge1 {{EDGE_1_NAME}}", {{EDGE_1_EXPECTED}}, s.solution({{EDGE_1_ARGS}})) ? 0 : 1;
+        fail += check("edge2 {{EDGE_2_NAME}}", {{EDGE_2_EXPECTED}}, s.solution({{EDGE_2_ARGS}})) ? 0 : 1;
 
         System.out.println(fail == 0 ? "ALL PASS" : fail + " FAIL");
     }
