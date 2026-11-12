@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-11-10T22:00:59",
+  "generated_at": "2026-11-12T23:59:57",
   "phase": "진단",
   "weekly_goal": 5,
   "totals": {
-    "records": 1,
-    "problems": 1,
-    "days": 1,
+    "records": 2,
+    "problems": 2,
+    "days": 2,
     "solved_in_time": 0,
-    "types_touched": 1,
+    "types_touched": 2,
     "types_total": 12,
-    "avg_mastery": 3
+    "avg_mastery": 4
   },
   "streak": {
     "day": 1,
     "week": 0,
-    "this_week": 1,
+    "this_week": 2,
     "weekly_goal": 5
   },
   "types": [
     {
       "id": "t01",
       "name": "구현과 시뮬레이션",
-      "mastery": 40,
+      "mastery": 39,
       "base": 40,
       "samples": 1,
       "last_seen": "2026-11-10",
-      "days_since": 0,
+      "days_since": 2,
       "status": "35-59",
       "avg_minutes": 76.0,
       "target_minutes": 25,
@@ -41,20 +41,22 @@
     {
       "id": "t02",
       "name": "문자열",
-      "mastery": 0,
-      "base": 0,
-      "samples": 0,
-      "last_seen": null,
-      "days_since": null,
-      "status": "기록 없음",
-      "avg_minutes": null,
+      "mastery": 10,
+      "base": 10,
+      "samples": 1,
+      "last_seen": "2026-11-12",
+      "days_since": 0,
+      "status": "35 미만",
+      "avg_minutes": 41.0,
       "target_minutes": 25,
       "targets": {
         "1": 15,
         "2": 25,
         "3": 35
       },
-      "outcomes": {}
+      "outcomes": {
+        "failed": 1
+      }
     },
     {
       "id": "t03",
@@ -321,6 +323,11 @@
       "date": "2026-11-10",
       "count": 1,
       "outcome": "solved_with_hint"
+    },
+    {
+      "date": "2026-11-12",
+      "count": 1,
+      "outcome": "failed"
     }
   ],
   "errors": [
@@ -337,7 +344,7 @@
     {
       "cause": "경계조건",
       "desc": "빈 입력, 원소 1개, 최대값, 동일값 등 엣지케이스",
-      "count": 0
+      "count": 1
     },
     {
       "cause": "자료구조선택",
@@ -347,7 +354,7 @@
     {
       "cause": "구현실수",
       "desc": "인덱스, off-by-one, 조건문 뒤집힘 등 코딩 실수",
-      "count": 1
+      "count": 2
     },
     {
       "cause": "문제오독",
@@ -384,7 +391,28 @@
       "solution_path": "src/main/java/daily/d20261110/D20261110_92341_ParkingFee.java",
       "platform": "programmers",
       "next_review": "2026-11-13",
-      "days_until": 3,
+      "days_until": 1,
+      "total_attempts": 1
+    },
+    {
+      "key": "programmers:60057",
+      "title": "문자열 압축",
+      "level": 2,
+      "types": [
+        "t02"
+      ],
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
+      "last_date": "2026-11-12",
+      "last_outcome": "failed",
+      "errors": [
+        "구현실수",
+        "경계조건"
+      ],
+      "interval": 1,
+      "solution_path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java",
+      "platform": "programmers",
+      "next_review": "2026-11-13",
+      "days_until": 1,
       "total_attempts": 1
     }
   ],
@@ -398,9 +426,37 @@
       "types": [
         "t01"
       ]
+    },
+    {
+      "date": "2026-11-12",
+      "minutes": 41,
+      "target": 25,
+      "outcome": "failed",
+      "title": "문자열 압축",
+      "types": [
+        "t02"
+      ]
     }
   ],
   "recent": [
+    {
+      "date": "2026-11-12",
+      "title": "문자열 압축",
+      "level": 2,
+      "types": [
+        "t02"
+      ],
+      "minutes": 41,
+      "target": 25,
+      "outcome": "failed",
+      "errors": [
+        "구현실수",
+        "경계조건"
+      ],
+      "mode": "new",
+      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
+      "path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java"
+    },
     {
       "date": "2026-11-10",
       "title": "주차 요금 계산",
@@ -422,10 +478,10 @@
   ],
   "recommendation": {
     "mode": "new",
-    "reason": "진단 단계다. 아직 풀지 않은 유형이 11개 남았고, 순서상 문자열 차례다.",
+    "reason": "진단 단계다. 아직 풀지 않은 유형이 10개 남았고, 순서상 정렬과 해시 차례다.",
     "suggested_level": 2,
-    "type": "문자열",
-    "type_id": "t02",
+    "type": "정렬과 해시",
+    "type_id": "t03",
     "target": null
   },
   "type_names": {
