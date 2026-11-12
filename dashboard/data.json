@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-13T00:07:47",
+  "generated_at": "2026-11-13T00:10:20",
   "phase": "진단",
   "weekly_goal": 5,
   "totals": {
-    "records": 3,
+    "records": 2,
     "problems": 2,
-    "days": 3,
+    "days": 2,
     "solved_in_time": 0,
     "types_touched": 2,
     "types_total": 12,
-    "avg_mastery": 6
+    "avg_mastery": 7
   },
   "streak": {
-    "day": 2,
+    "day": 1,
     "week": 0,
-    "this_week": 3,
+    "this_week": 2,
     "weekly_goal": 5
   },
   "types": [
@@ -41,13 +41,13 @@
     {
       "id": "t02",
       "name": "문자열",
-      "mastery": 27,
-      "base": 27,
-      "samples": 2,
-      "last_seen": "2026-11-13",
-      "days_since": 0,
-      "status": "35 미만",
-      "avg_minutes": 26.5,
+      "mastery": 40,
+      "base": 40,
+      "samples": 1,
+      "last_seen": "2026-11-12",
+      "days_since": 1,
+      "status": "35-59",
+      "avg_minutes": 53.0,
       "target_minutes": 25,
       "targets": {
         "1": 15,
@@ -55,7 +55,6 @@
         "3": 35
       },
       "outcomes": {
-        "failed": 1,
         "solved_with_hint": 1
       }
     },
@@ -328,11 +327,6 @@
     {
       "date": "2026-11-12",
       "count": 1,
-      "outcome": "failed"
-    },
-    {
-      "date": "2026-11-13",
-      "count": 1,
       "outcome": "solved_with_hint"
     }
   ],
@@ -360,7 +354,7 @@
     {
       "cause": "구현실수",
       "desc": "인덱스, off-by-one, 조건문 뒤집힘 등 코딩 실수",
-      "count": 3
+      "count": 2
     },
     {
       "cause": "문제오독",
@@ -408,17 +402,18 @@
         "t02"
       ],
       "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
-      "last_date": "2026-11-13",
+      "last_date": "2026-11-12",
       "last_outcome": "solved_with_hint",
       "errors": [
-        "구현실수"
+        "구현실수",
+        "경계조건"
       ],
       "interval": 3,
       "solution_path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java",
       "platform": "programmers",
-      "next_review": "2026-11-16",
-      "days_until": 3,
-      "total_attempts": 2
+      "next_review": "2026-11-15",
+      "days_until": 2,
+      "total_attempts": 1
     }
   ],
   "time_trend": [
@@ -434,17 +429,7 @@
     },
     {
       "date": "2026-11-12",
-      "minutes": 41,
-      "target": 25,
-      "outcome": "failed",
-      "title": "문자열 압축",
-      "types": [
-        "t02"
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "minutes": 12,
+      "minutes": 53,
       "target": 25,
       "outcome": "solved_with_hint",
       "title": "문자열 압축",
@@ -455,32 +440,15 @@
   ],
   "recent": [
     {
-      "date": "2026-11-13",
-      "title": "문자열 압축",
-      "level": 2,
-      "types": [
-        "t02"
-      ],
-      "minutes": 12,
-      "target": 25,
-      "outcome": "solved_with_hint",
-      "errors": [
-        "구현실수"
-      ],
-      "mode": "review",
-      "url": "https://school.programmers.co.kr/learn/courses/30/lessons/60057",
-      "path": "src/main/java/daily/d20261112/D20261112_60057_StringCompression.java"
-    },
-    {
       "date": "2026-11-12",
       "title": "문자열 압축",
       "level": 2,
       "types": [
         "t02"
       ],
-      "minutes": 41,
+      "minutes": 53,
       "target": 25,
-      "outcome": "failed",
+      "outcome": "solved_with_hint",
       "errors": [
         "구현실수",
         "경계조건"
